@@ -1,0 +1,75 @@
+.toy-preview-container {
+    text-align: center;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    box-shadow: 10px 10px 25px 0 rgba(153, 166, 182, 0.42);
+    border-radius: 20%;
+    height: 45vh;
+    width: 100%;
+
+    .toy-preview{
+        height: 100%;
+    }
+
+    button {
+        background-color: $clr6;
+        border-radius: 10%;
+    }
+
+    h4 {
+        text-transform: capitalize;
+        color: black;
+    }
+
+    img {
+        border-radius: 10%;
+        object-fit: cover;
+        margin: 5px;
+    }
+
+    .toy-available{
+        font-size: 0.8em;
+    }
+
+
+    @include for-mobile-layout {
+        
+        img{
+            width: 90%;
+            height: 70%;
+        }
+       
+    }
+
+    @include for-narrow-layout {
+        img{
+            width: 95%;
+            height: 50%;
+        }
+    }
+
+    @include for-normal-layout {
+
+    }
+
+    @include for-wide-layout {
+      
+    }
+
+    @include for-wide-layout {}
+
+
+}
+
+.details-img{
+    width: 40vh;
+    height: 40vh;
+}
+
+.toy-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
