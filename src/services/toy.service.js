@@ -34,6 +34,7 @@ function getById(toyId) {
     return httpService.get(BASE_URL + toyId)
 }
 function remove(toyId) {
+
     // return storageService.remove(STORAGE_KEY, toyId)
     return httpService.delete(BASE_URL + toyId)
 }
