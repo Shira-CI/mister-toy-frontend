@@ -4,24 +4,23 @@ import { useNavigate, useParams, Link } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 
-import { reviewService } from '../services/review.service.js'
-import { AddReview } from '../cmps/add-review.jsx'
+import { ReviewList } from '../cmps/review-list.jsx'
 
 export function ToyDetails() {
     const [toy, setToy] = useState(toyService.getEmptyToy())
     const { toyId } = useParams()
     const navigate = useNavigate()
-
-    const [review, setReview] = useState(reviewService.getEmptyReview())
-    const [reviews, setReviews] = useState([])
+    // console.log(toy.reviews)
+    // const [review, setReview] = useState(reviewService.getEmptyReview())
+    // const [reviews, setReviews] = useState([])
 
 
 
     useEffect(() => {
         if (toyId.length > 1) {
             loadToy()
-                .then(toy => reviewService.query(toy._id))
-                .then(reviewsFromBackend => setReviews(reviewsFromBackend))
+            // .then(toy => reviewService.query(toy._id))
+            // .then(reviewsFromBackend => setReviews(reviewsFromBackend))
         }
     }, [toyId])
 
@@ -39,21 +38,33 @@ export function ToyDetails() {
         }
     }
 
-    function handleReviewChange({ target }) {
-        const { value, name: field, } = target
-        setReview((prevReview) => ({ ...prevReview, [field]: value, toyId: toy._id }))
+
+    function onRemoveReview(toyId, reviewId) {
+        // bookService.removeReview(bookId, reviewId)
+        // .then(()=>{
+        //     const updatedReviews = book.reviews.filter(review => review.id !== reviewId)
+        //     setBook({...book, reviews:updatedReviews})
+        //     showSuccessMsg('Review saved')
+        // })
     }
 
-    async function onSaveReview(ev) {
-        ev.preventDefault()
-        try {
-            const savedReview = await reviewService.save(review)
-        } catch (err) {
-            console.log("Couldn't save review, err:", err)
-        }
-    }
+    // function handleReviewChange({ target }) {
+    //     const { value, name: field, } = target
+    //     setReview((prevReview) => ({ ...prevReview, [field]: value, toyId: toy._id }))
+    // }
+
+    // async function onSaveReview(ev) {
+    //     ev.preventDefault()
+    //     try {
+    //         const savedReview = await reviewService.save(review)
+    //     } catch (err) {
+    //         console.log("Couldn't save review, err:", err)
+    //     }
+    // }
 
     const inventory = toy.inStock ? 'In stock' : 'Not available'
+
+
     if (!toy) return <div>Loading...</div>
 
     return (
@@ -70,15 +81,11 @@ export function ToyDetails() {
                 )}
             </section>
 
-            <section className="reviews">
-                <AddReview toy={toy} handleReviewChange={handleReviewChange} onSaveReview={onSaveReview} />
-                <ul className="review-list">
-                    {reviews.map(review => <li key={review._id}>{review.txt}</li>)}
-                </ul>
-            </section>
+            {toy.reviews.length > 0 && <ReviewList reviews={toy.reviews} onRemoveReview={onRemoveReview} toyId={toyId} />}
 
             <button onClick={() => navigate('/toy')}> Back </button>
             <button><Link to={`/toy/edit/${toy._id}`}>Edit</Link></button>
+            <button><Link to={`/toy/${toy._id}/review`}>Add review</Link></button>
 
         </section>)
 }

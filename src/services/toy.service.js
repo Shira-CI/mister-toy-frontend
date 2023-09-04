@@ -16,7 +16,10 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getEmptyReview,
+    addReview,
+    removeReview
 }
 
 // let gToys
@@ -58,6 +61,7 @@ function getEmptyToy() {
         createdAt: Date.now(),
         inStock: true,
         msg: [],
+        reviews: []
         // image: 
     }
 }
@@ -65,6 +69,45 @@ function getEmptyToy() {
 function getDefaultFilter() {
     return { title: '', maxPrice: '', inStock: '', labels: '' }
 }
+
+function getEmptyReview() {
+    return {
+        id: '',
+        fullname: '',
+        rating: 5,
+        readAt: '',
+        description: ''
+    }
+}
+
+
+
+async function addReview(toyId, review) {
+    review.id = utilService.makeId()
+    // console.log(review , toyId)
+    try{
+        let currToy = await getById(toyId)
+       currToy.reviews.push(review)
+       await save(currToy)
+    //    console.log(currToy)
+       return currToy
+    }
+    catch (err){
+        console.log('Had issues in adding review', err)
+        // showErrorMsg('Cannot load toy')
+    }
+
+}
+
+function removeReview(toyId, reviewId) {
+    return getById(toyId)
+        .then(((currToy) => {
+            const idx = currToy.reviews.findIndex(review => review.id === reviewId)
+            currToy.reviews.splice(idx, 1)
+            save(currToy)
+        }))
+}
+
 
 
 // Private functions
