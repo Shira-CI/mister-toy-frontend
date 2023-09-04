@@ -44,16 +44,18 @@ async function login(userCred) {
   }
 }
 
+
+async function logout() {
+  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+  return await httpService.post('auth/logout')
+}
+
 async function signup(userCred) {
   const user = await httpService.post('auth/signup', userCred)
   console.log(user)
   return saveLocalUser(user)
 }
 
-async function logout() {
-  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-  return await httpService.post('auth/logout')
-}
 
 function saveLocalUser(user) {
   // console.log('user.isAdmin:', user.isAdmin)

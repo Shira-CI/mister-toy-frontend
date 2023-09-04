@@ -1,22 +1,27 @@
 import { Link } from "react-router-dom";
 
 
-export function ToyPreview({ toy, onRemoveToy }) {
+export function ToyPreview({ toy, onRemoveToy, user }) {
+    // console.log(user)
     return (
         <article className="toy-preview">
             <Link className="details-a-link" to={`/toy/${toy._id}`}>
-            <h4>{toy.title}</h4>
-            {/* {console.log('from toy preview' ,toy)} */}
-            <img src={toy.image} alt="" />
+                <h4>{toy.title}</h4>
+                {/* {console.log('from toy preview' ,toy)} */}
+                <img src={toy.image} alt="" />
 
-            <p>Price: <span>{toy.price}$</span></p>
-            {toy.inStock && <span className="toy-available">Toy Available</span>}
-            {!toy.inStock && <span className="toy-available">Toy Unavailable</span>}
+                <p>Price: <span>{toy.price}$</span></p>
+                {toy.inStock && <span className="toy-available">Toy Available</span>}
+                {!toy.inStock && <span className="toy-available">Toy Unavailable</span>}
             </Link>
-            <section>
+            {user && user.isAdmin && <section>
                 <button> <Link to={`/toy/edit/${toy._id}`}>Edit</Link> </button>
                 <button onClick={() => { onRemoveToy(toy._id) }}>Remove Toy</button>
-            </section>
+            </section>}
+            {(!user || !user.isAdmin) && <section>
+                <button>Add to cart </button>
+                <button>Details</button>
+            </section>}
         </article>
     )
 }

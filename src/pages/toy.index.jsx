@@ -9,20 +9,27 @@ import { ToyList } from "../cmps/toy.list"
 import { ToyFilter } from "../cmps/toy.filter"
 import { ToySort } from '../cmps/toy-sort'
 
-
 export function ToyIndex() {
 
     const dispatch = useDispatch()
+
+
     const [filterBy, setFilterBy] = useState(toyService.getDefaultFilter())
     const [sortBy, setSortBy] = useState({ type: 'title', desc: 1 })
-
+    const [loggedInUser, setLoggedInUser] = useState(null)
+    const user = useSelector((storeState) => storeState.userModule.user)
     const toys = useSelector((storeState) => storeState.toyModule.toys)
     const isLoading = useSelector((storeState) => storeState.toyModule.isLoading)
     // console.log(toys)
+    // console.log(user , 'user from store')
+    // console.log(loggedInUser , 'user from index')
+
 
     useEffect(() => {
         loadToys(filterBy, sortBy)
-    }, [filterBy, sortBy])
+        setLoggedInUser(user)
+    }, [filterBy, sortBy, user])
+
 
     async function onRemoveToy(toyId) {
         try {
@@ -66,6 +73,7 @@ export function ToyIndex() {
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}
+                user={loggedInUser}
             />
         </section>
     )

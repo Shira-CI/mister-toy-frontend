@@ -2,31 +2,36 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { CredentialsForm } from './credentials-form.jsx'
 import { Fragment, useState } from 'react'
+import { login, signup } from '../store/user.action.js'
 
 // const { useState } = React
 
-export function LoginSignup({ onChangeLoginStatus }) {
+export function LoginSignup() {
 
     const [isSignup, setIsSignUp] = useState(false)
 
     function onSubmit(credentials) {
-        isSignup ? signup(credentials) : login(credentials)
+        isSignup ? onSignup(credentials) : onLogin(credentials)
     }
 
-    function login(credentials) {
-        userService.login(credentials)
-            .then(onChangeLoginStatus)
-            .then(() => { showSuccessMsg('Logged in successfully') })
-            .catch((err) => { showErrorMsg('Oops try again') })
+    async function onLogin(credentials) {
+        // console.log('onLogin')
+        if (!credentials.username) return
+        try {
+            const user = await login(credentials)
+            // console.log(user)
+            showSuccessMsg(`Welcome: ${user.fullname}`)
+        } catch (err) {
+            showErrorMsg('Cannot login')
+        }
     }
 
-    function signup(credentials) {
-        userService.signup(credentials)
-            .then(onChangeLoginStatus)
-            .then(() => { showSuccessMsg('Signed in successfully') })
-            .catch((err) => { showErrorMsg('Oops try again') })
+    async function onSignup(credentials) {
+        if (!credentials.username || !credentials.password || !credentials.fullname)
+            return
+        await signup(credentials)
+        console.log('signup')
     }
-
     return (
         <div className="credentials-page">
             <CredentialsForm

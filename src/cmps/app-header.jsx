@@ -1,20 +1,33 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { LoginSignup } from "./login-signup"
-import {useState} from 'react'
-import {userService} from '../services/user.service.js'
+import { useSelector } from 'react-redux'
+
+import { useEffect, useState } from 'react'
+import { logout } from '../store/user.action.js'
 
 export function AppHeader() {
-    const [user, setUser] = useState(userService.getLoggedinUser())
+    const user = useSelector((storeState) => storeState.userModule.user)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    function onLogout() {
-        userService
-            .logout()
-            .then(() => { setUser(null) })
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setIsLoggedIn(user)
+    }, [user])
+
+
+    async function onLogout() {
+        try {
+            navigate('/')
+            await logout()
+            // showSuccessMsg(`Bye now`)
+            console.log('logout')
+        } catch (err) {
+            // showErrorMsg('Cannot logout')
+        }
     }
 
-    function onChangeLoginStatus(user) {
-        setUser(user)
-    }
+
     return (
         <header className="app-header full">
 
@@ -31,10 +44,10 @@ export function AppHeader() {
                 </ section >
             ) : (
                 <section>
-                    <LoginSignup onChangeLoginStatus={onChangeLoginStatus} />
+                    <LoginSignup />
                 </section>
             )}
-    
+
 
         </header>
 

@@ -28,6 +28,17 @@ export async function login(credentials) {
   }
 }
 
+export async function logout() {
+  try {
+    const user = await userService.logout()
+    store.dispatch({ type: SET_USER, user: null })
+    return user
+  } catch (err) {
+    console.log('Cannot logout', err)
+    throw err
+  }
+}
+
 export async function signup(credentials) {
   try {
     const user = await userService.signup(credentials)
@@ -49,16 +60,7 @@ export async function updateUser(user) {
   }
 }
 
-export async function logout() {
-  try {
-    const user = await userService.logout()
-    store.dispatch({ type: SET_USER, user: null })
-    return user
-  } catch (err) {
-    console.log('Cannot logout', err)
-    throw err
-  }
-}
+
 
 export async function loadUser(userId) {
   try {
