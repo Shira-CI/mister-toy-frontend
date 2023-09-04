@@ -13,13 +13,16 @@ export function AddReview() {
         const value = target.type === 'number' ? (+target.value || '') : target.value
         setReviewToEdit(prevReview => ({ ...prevReview, [field]: value }))
     }
-
     async function onSaveReview(ev) {
         ev.preventDefault()
-        await toyService.addReview(params.toyId, newReview)
-        navigate('/toy')
-        // showSuccessMsg('Review saved')
+        try {
+            await toyService.addReview(params.toyId, newReview)
+            navigate(`/toy/${params.toyId}`)
+        } catch (err) {
+            console.log("Couldn't save review, err:", err)
+        }
     }
+
 
     const { fullname, rating, readAt, description } = newReview
 

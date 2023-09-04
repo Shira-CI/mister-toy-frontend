@@ -10,17 +10,11 @@ export function ToyDetails() {
     const [toy, setToy] = useState(toyService.getEmptyToy())
     const { toyId } = useParams()
     const navigate = useNavigate()
-    // console.log(toy.reviews)
-    // const [review, setReview] = useState(reviewService.getEmptyReview())
-    // const [reviews, setReviews] = useState([])
-
 
 
     useEffect(() => {
         if (toyId.length > 1) {
             loadToy()
-            // .then(toy => reviewService.query(toy._id))
-            // .then(reviewsFromBackend => setReviews(reviewsFromBackend))
         }
     }, [toyId])
 
@@ -39,31 +33,17 @@ export function ToyDetails() {
     }
 
 
-    function onRemoveReview(toyId, reviewId) {
-        // bookService.removeReview(bookId, reviewId)
-        // .then(()=>{
-        //     const updatedReviews = book.reviews.filter(review => review.id !== reviewId)
-        //     setBook({...book, reviews:updatedReviews})
-        //     showSuccessMsg('Review saved')
-        // })
+    async function onRemoveReview(toyId, reviewId) {
+        try {
+           const updatedToy = await toyService.removeReview(toyId, reviewId)
+          setToy(updatedToy)
+        }
+        catch (err) {
+            console.log('Had issues in removing review', err)
+        }
     }
 
-    // function handleReviewChange({ target }) {
-    //     const { value, name: field, } = target
-    //     setReview((prevReview) => ({ ...prevReview, [field]: value, toyId: toy._id }))
-    // }
-
-    // async function onSaveReview(ev) {
-    //     ev.preventDefault()
-    //     try {
-    //         const savedReview = await reviewService.save(review)
-    //     } catch (err) {
-    //         console.log("Couldn't save review, err:", err)
-    //     }
-    // }
-
     const inventory = toy.inStock ? 'In stock' : 'Not available'
-
 
     if (!toy) return <div>Loading...</div>
 

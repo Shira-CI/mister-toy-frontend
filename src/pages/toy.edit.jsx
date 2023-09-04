@@ -64,7 +64,7 @@ export function ToyEdit() {
         try {
             const savedToy = await toyService.save(toyToEdit)
             // saveToy(toyToEdit)
-            console.log('toy saved', savedToy);
+            // console.log('toy saved', savedToy);
             navigate('/toy')
             showSuccessMsg(`Toy '${savedToy._id}' saved!`)
         }

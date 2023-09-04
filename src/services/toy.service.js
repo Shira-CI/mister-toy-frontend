@@ -84,12 +84,10 @@ function getEmptyReview() {
 
 async function addReview(toyId, review) {
     review.id = utilService.makeId()
-    // console.log(review , toyId)
     try{
         let currToy = await getById(toyId)
        currToy.reviews.push(review)
        await save(currToy)
-    //    console.log(currToy)
        return currToy
     }
     catch (err){
@@ -99,13 +97,17 @@ async function addReview(toyId, review) {
 
 }
 
-function removeReview(toyId, reviewId) {
-    return getById(toyId)
-        .then(((currToy) => {
-            const idx = currToy.reviews.findIndex(review => review.id === reviewId)
-            currToy.reviews.splice(idx, 1)
-            save(currToy)
-        }))
+async function removeReview(toyId, reviewId) {
+    try{
+       const currToy = await getById(toyId)
+       const idx = currToy.reviews.findIndex(review => review.id === reviewId)
+       currToy.reviews.splice(idx, 1)
+      await save(currToy)
+      return currToy
+    }
+    catch (err){
+        console.log('Had issues in toy details', err)
+    }
 }
 
 
