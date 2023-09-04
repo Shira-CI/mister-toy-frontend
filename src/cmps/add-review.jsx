@@ -24,7 +24,7 @@ export function AddReview() {
     }
 
 
-    const { fullname, rating, readAt, description } = newReview
+    const { fullname, rating, description } = newReview
 
     return (
         <section className="add-review">
@@ -50,6 +50,7 @@ export function AddReview() {
                     name="description" id="description" ></textarea>
 
                 <button>Add Review</button>
+                <button onClick={()=> navigate(`/toy/${params.toyId}`)}>Cancel</button>
             </form>
         </section>
     )

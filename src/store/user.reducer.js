@@ -15,18 +15,19 @@ export function userReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { ...state, user: action.user }
+
     case SET_WATCHED_USER:
-      state = { ...state, watchedUser: action.user }
-      break
+      return { ...state, watchedUser: action.user }
+
     case REMOVE_USER:
-      state = {
+      return {
         ...state,
-        users: state.users.filter((user) => user._id !== action.userId),
-      }
+        users: state.users.filter(user => user._id !== action.userId) }
+
     case SET_USERS:
-      state = { ...state, users: action.users }
-      break
+      return { ...state, users: action.users }
+
     default:
-      return { ...state }
+      return state
   }
 }
