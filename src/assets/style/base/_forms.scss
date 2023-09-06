@@ -1,17 +1,17 @@
 button {
     cursor: pointer;
-    // background-color: var(--clr2bg);
-    // margin: 0.5em;
+    margin: 0.5em;
     border: 0;
     padding: 0.5em 0.8em;
     border-radius: 4px;   
     font-family: Bahnschrift;
+    font-size: 1em;
+    transition: .3s;
 
 }
 
 button:hover {
-    background-color: var(--clr2);
-    color: rgb(251, 249, 249);
+    color: rgb(248, 243, 243);
     transition: .3s;
 }
 input:focus {
