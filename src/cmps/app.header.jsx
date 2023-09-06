@@ -57,7 +57,7 @@ export function AppHeader() {
 
 
             )}
-            {isModalOpen && <LoginModal closeDemoLogin={closeDemoLogin} />}
+            {isModalOpen && <LoginModal closeDemoLogin={closeDemoLogin} login={login} logout={logout} />}
 
             <nav>
                 <NavLink to="/">Home</NavLink> |
