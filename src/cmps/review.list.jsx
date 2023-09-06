@@ -1,4 +1,4 @@
-import { ReviewPreview } from "./review-preview.jsx"
+import { ReviewPreview } from "./review.preview.jsx"
 
 
 export function ReviewList({ reviews, onRemoveReview, toyId }) {

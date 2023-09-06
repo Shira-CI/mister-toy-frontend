@@ -7,7 +7,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { loadToys, removeToy, saveToy } from "../store/toy.action"
 import { ToyList } from "../cmps/toy.list"
 import { ToyFilter } from "../cmps/toy.filter"
-import { ToySort } from '../cmps/toy-sort'
+import { ToySort } from '../cmps/toy.sort'
 
 export function ToyIndex() {
 
@@ -63,9 +63,9 @@ export function ToyIndex() {
                 <ToyFilter onSetFilter={onSetFilter} />
                 <ToySort sortBy={sortBy} setSortBy={setSortBy} />
 
-                <button className='add-toy-btn'>
-                    <Link to={`/toy/edit`}>Add Toy</Link>
-                </button>
+                <Link to={`/toy/edit`}>
+                    <button className='add-toy-btn'> Add Toy </button>
+                </Link>
             </section>
 
             {isLoading && <h4>Loading...</h4>}

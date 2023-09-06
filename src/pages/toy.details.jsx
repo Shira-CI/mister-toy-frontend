@@ -4,7 +4,7 @@ import { useNavigate, useParams, Link } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 
-import { ReviewList } from '../cmps/review-list.jsx'
+import { ReviewList } from '../cmps/review.list.jsx'
 
 export function ToyDetails() {
     const [toy, setToy] = useState(toyService.getEmptyToy())
@@ -17,7 +17,6 @@ export function ToyDetails() {
             loadToy()
         }
     }, [toyId])
-
 
     async function loadToy() {
         try {
@@ -32,11 +31,10 @@ export function ToyDetails() {
         }
     }
 
-
     async function onRemoveReview(toyId, reviewId) {
         try {
-           const updatedToy = await toyService.removeReview(toyId, reviewId)
-          setToy(updatedToy)
+            const updatedToy = await toyService.removeReview(toyId, reviewId)
+            setToy(updatedToy)
         }
         catch (err) {
             console.log('Had issues in removing review', err)
@@ -64,9 +62,13 @@ export function ToyDetails() {
             {toy.reviews.length > 0 && <ReviewList reviews={toy.reviews} onRemoveReview={onRemoveReview} toyId={toyId} />}
 
             <button onClick={() => navigate('/toy')}> Back </button>
-            <button><Link to={`/toy/edit/${toy._id}`}>Edit</Link></button>
-            <button><Link to={`/toy/${toy._id}/review`}>Add review</Link></button>
 
+            <Link to={`/toy/edit/${toy._id}`}>
+                <button> Edit </button>
+            </Link>
+
+            <Link to={`/toy/${toy._id}/review`}>
+                <button> Add review </button>
+            </Link>
         </section>)
 }
-

@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom"
-import { LoginSignup } from "./login-signup"
+import { LoginSignup } from "./login.signup"
 import { useSelector } from 'react-redux'
 
 import { useEffect, useState } from 'react'
