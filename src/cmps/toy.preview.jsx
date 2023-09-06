@@ -22,8 +22,7 @@ export function ToyPreview({ toy, onRemoveToy, user }) {
                 <button onClick={() => { onRemoveToy(toy._id) }}>Remove Toy</button>
             </section>}
             {(!user || !user.isAdmin) && <section>
-                <button>Add to cart </button>
-                <button>Details</button>
+                <button className="add-to-cart-btn">Add to cart </button>
             </section>}
         </article>
     )

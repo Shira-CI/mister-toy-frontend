@@ -50,8 +50,8 @@ export function AddReview() {
                     name="description" id="description" ></textarea>
 
                 <button>Add Review</button>
-                <button onClick={()=> navigate(`/toy/${params.toyId}`)}>Cancel</button>
             </form>
+                <button onClick={()=> navigate(`/toy/${params.toyId}`)}>Cancel</button>
         </section>
     )
 }

@@ -94,7 +94,6 @@ async function addReview(toyId, review) {
         console.log('Had issues in adding review', err)
         // showErrorMsg('Cannot load toy')
     }
-
 }
 
 async function removeReview(toyId, reviewId) {
