@@ -15,7 +15,7 @@ export function ToyIndex() {
 
 
     const [filterBy, setFilterBy] = useState(toyService.getDefaultFilter())
-    const [sortBy, setSortBy] = useState({ type: 'title', desc: 1 })
+    const [sortBy, setSortBy] = useState({ type: 'headline', desc: 1 })
     const [loggedInUser, setLoggedInUser] = useState(null)
     const user = useSelector((storeState) => storeState.userModule.user)
     const toys = useSelector((storeState) => storeState.toyModule.toys)
@@ -59,13 +59,16 @@ export function ToyIndex() {
 
     return (
         <section className='index-container'>
+
             <section className='toys-filter-container'>
                 <ToyFilter onSetFilter={onSetFilter} />
+
                 <ToySort sortBy={sortBy} setSortBy={setSortBy} />
 
-                <Link to={`/toy/edit`}>
+                {/* <Link to={`/toy/edit`}>
                     <button className='add-toy-btn'> Add Toy </button>
-                </Link>
+                </Link> */}
+
             </section>
 
             {isLoading && <h4>Loading...</h4>}

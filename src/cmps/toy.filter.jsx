@@ -5,6 +5,7 @@ import { toyService } from "../services/toy.service.js"
 export function ToyFilter({ onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(toyService.getDefaultFilter())
     // onSetFilter = useRef(utilService.debounce(onSetFilter))
+    // console.log(filterByToEdit)
 
     const elInputRef = useRef(null)
 
@@ -18,6 +19,7 @@ export function ToyFilter({ onSetFilter }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
+        console.log(target)
         const field = target.name
         const value = target.type === 'number' ? (+target.value || '') : target.value
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
@@ -30,9 +32,9 @@ export function ToyFilter({ onSetFilter }) {
     }
 
     return <section className="toy-filter">
-        <h3>Filter By:</h3>
         <form onSubmit={onSubmitFilter}>
-            <label htmlFor="title">Name:</label>
+
+            <label htmlFor="title">Search by name:</label>
             <input type="text"
                 id="title"
                 name="title"
@@ -60,7 +62,7 @@ export function ToyFilter({ onSetFilter }) {
 
             <label htmlFor="labels">Labels:</label>
             <select className="filter-by-label" onChange={handleChange} name="labels" id="labels"  >
-                <option value="all">All</option>
+                <option value="">All</option>
                 <option value="On wheels">On wheels</option>
                 <option value="Art">Art</option>
                 <option value="Doll">Doll</option>

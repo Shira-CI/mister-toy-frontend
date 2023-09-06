@@ -9,22 +9,30 @@ export function ToySort({ sortBy, setSortBy }) {
     }, [sortByToEdit])
 
     function handleChange({ target }) {
-        const field = target.name
-        const value = target.type === 'number' ? +target.value : target.value
-        if (field === 'desc') setSortByToEdit(prevSort => ({ ...prevSort, desc: -(prevSort.desc) }))
-        else setSortByToEdit((prevSort) => ({ ...prevSort, [field]: value }))
+        const field = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (field === 'desc') {
+            const newDesc = value ? 1 : -1;
+            setSortByToEdit((prevSort) => ({ ...prevSort, desc: newDesc }));
+        } else {
+            setSortByToEdit((prevSort) => ({ ...prevSort, [field]: value }));
+        }
     }
+    
+    
 
     return (
         <form className="toy-sort">
             <select className="sort-type" name="type" value={sortByToEdit.type} onChange={handleChange}>
-                <option value="title">name</option>
+                <option value="headline" disabled >Select sorting option</option>
+                <option value="title">Name</option>
                 <option value="createdAt">Created At</option>
                 <option value="price">Price</option>
             </select>
             <label>
                 <input type="checkbox" name="desc" checked={sortByToEdit.desc > 0} onChange={handleChange} />
-                Ascending
+                <span> Ascending</span> 
             </label>
         </form >
     )

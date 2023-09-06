@@ -29,7 +29,7 @@ export function AppHeader() {
 
 
     return (
-        <header className="app-header full">
+        <header className="app-header ">
 
             <nav>
                 <NavLink to="/">Home</NavLink> |
