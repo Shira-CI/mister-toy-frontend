@@ -22,7 +22,7 @@
 .demo-login-modal {
   // width: 50vh;
   // height: 50vh;
-  background-color: #eed9beda;
+  // background-color: #eed9beda;
   background-color: #ff6488a0;
   position: absolute;
   top: 20%;
@@ -30,7 +30,7 @@
   transform: translate(-50%, 0);
   padding: 25px;
   border-radius: 2em;
-
+z-index: 5;
   .modal-content {
     // width: 80%;
     // height: 100%;

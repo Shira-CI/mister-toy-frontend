@@ -13,16 +13,23 @@ export function ToyPreview({ toy, onRemoveToy, user }) {
                 </div>
 
                 <p>Price: <span>{toy.price}$</span></p>
-                {!toy.inStock && <span className="toy-unavailable">Out of stock</span>}
+                {!toy.inStock && <div className="toy-unavailable">
+
+                    <span >Out of stock</span>
+
+                </div>
+                }
             </Link>
 
-            {user && user.isAdmin && <section>
-                <Link to={`/toy/edit/${toy._id}`}>
-                    <button>Edit</button>
-                </Link>
+            {user && user.isAdmin && <section className="admin-btns">
+                <button>
+                    <Link to={`/toy/edit/${toy._id}`}>
+                        Edit
+                    </Link>
+                </button>
                 <button onClick={() => { onRemoveToy(toy._id) }}>Remove Toy</button>
             </section>}
-            
+
             {(!user || !user.isAdmin) && (toy.inStock) &&
                 <button className="add-to-cart-btn">Add to cart </button>
             }

@@ -15,7 +15,7 @@ export function LoginSignup() {
     }
 
     async function onLogin(credentials) {
-        console.log(credentials)
+        // console.log(credentials)
         if (!credentials.username) return
         try {
             const user = await login(credentials)
