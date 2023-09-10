@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState, useRef } from 'react'
 import { logout, login } from '../store/user.action.js'
 import { LoginModal } from '../cmps/login.modal.jsx'
+// import { LoginModal } from '../assets/img/logo.png'
 
 export function AppHeader() {
     const user = useSelector((storeState) => storeState.userModule.user)
@@ -63,6 +64,11 @@ export function AppHeader() {
 
     return (
         <header className="app-header ">
+            <div className="main-header">
+            <div className="logo"> 
+            <img src="/logo.png" alt="Logo" />
+             </div>
+
 
             {user ? (
                 <section className="logged-in-user">
@@ -74,16 +80,18 @@ export function AppHeader() {
 
                 </section>
             ) : (
-
+                
                 <section className="no-logged-in-user">
                     <LoginSignup />
                     <button className="demo-login" onClick={openDemoLogin}>Try demo login!</button>
                 </section>
+                 
 
 
             )}
             {isModalOpen && <LoginModal closeDemoLogin={closeDemoLogin} login={login} logout={logout} />}
 
+            </div>
             <nav>
                 <NavLink to="/">Home</NavLink> |
                 <NavLink to="/toy">Toys</NavLink> |
