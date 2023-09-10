@@ -76,8 +76,11 @@ export function ToyDetails() {
                 <span className={`${dynInventoryClass}`}>{inventory}</span>
 
                 <section className='toy-price'>
-                <span>${toy.price} </span>
-                {user && !user.isAdmin && <button>Add to cart </button>}
+                    <span>${toy.price} </span>
+                    {user && !user.isAdmin && (
+                        <button>Add to cart </button>
+                    )
+                    }
                 </section>
 
 
@@ -85,11 +88,14 @@ export function ToyDetails() {
 
                 {user && !user.isAdmin &&
                     <section className='customer-details-options'>
-                        <button> Add review
-                            <Link to={`/toy/${toy._id}/review`}></Link>
-                        </button>
 
-                        <button>Add to cart</button>
+                            <Link to={`/toy/${toy._id}/review`}>
+                        <button className='add-review-btn'> Add review
+
+
+                        </button>
+                            </Link>
+
                     </section>
                 }
 
@@ -99,7 +105,7 @@ export function ToyDetails() {
                     </button>
                 }
 
-                <button onClick={() => navigate('/toy')}> Back </button>
+                {/* <button onClick={() => navigate('/toy')}> Back </button> */}
             </section>
 
             <section className='details-img'>

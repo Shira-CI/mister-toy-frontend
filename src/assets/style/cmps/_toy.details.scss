@@ -9,8 +9,9 @@
     .details-img {
         width: 60vh;
         height: 60vh;
+
         img {
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             border-radius: 15px;
             object-fit: cover;
             width: 100%;
@@ -24,9 +25,34 @@
         justify-content: space-between;
         max-width: 50%;
 
-        .toy-description{
+        .toy-description {
             font-size: 1.15em;
         }
+
+        .toy-title {
+            margin: 15px 0;
+            font-size: 1.6em;
+        }
+
+        .toy-price {
+            margin: 20px 0;
+
+            span {
+                font-size: 1.15em;
+            }
+        }
+
+        button {
+            background-color: #f0416a;
+            width: 20%;
+            margin: 5px;
+            font-size: 1.15em;
+            border-radius: 2em
+        }
+    }
+
+    .customer-details-options{
+     
     }
 
 

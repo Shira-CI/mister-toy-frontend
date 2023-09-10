@@ -1,0 +1,28 @@
+.review-list {
+    display: flex;
+    flex-direction: column;
+    // gap: 5px;
+    line-height: 1.4em;
+    margin: 15px 0;
+
+    li {
+        text-decoration: none;
+        list-style: none;
+        padding: 10px;
+
+        h4>* {
+            font-weight: 400;
+        }
+
+    }
+
+    li:not(:last-child) {
+        border-bottom: 1px solid black;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+
+ 
+}
