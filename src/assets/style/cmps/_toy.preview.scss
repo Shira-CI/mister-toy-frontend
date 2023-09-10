@@ -3,8 +3,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    // margin: 10px;
+
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 20%;
     height: 49vh;
@@ -104,13 +103,3 @@
 
 }
 
-.details-img {
-    width: 40vh;
-    height: 40vh;
-}
-
-.toy-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}

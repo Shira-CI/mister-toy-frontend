@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 
 import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
@@ -8,15 +9,26 @@ import { ReviewList } from '../cmps/review.list.jsx'
 
 export function ToyDetails() {
     const [toy, setToy] = useState(toyService.getEmptyToy())
+    const [loggedInUser, setLoggedInUser] = useState(null)
+    const user = useSelector((storeState) => storeState.userModule.user)
+    // console.log(user , 'user from store')
+    // console.log(loggedInUser, 'user from details')
+
     const { toyId } = useParams()
     const navigate = useNavigate()
 
+    useEffect(() => {
+        setLoggedInUser(user)
+    }, [user])
 
     useEffect(() => {
         if (toyId.length > 1) {
             loadToy()
         }
     }, [toyId])
+
+
+
 
     async function loadToy() {
         try {
@@ -42,33 +54,57 @@ export function ToyDetails() {
     }
 
     const inventory = toy.inStock ? 'In stock' : 'Not available'
+    const dynInventoryClass = toy.inStock ? '' : 'red'
 
     if (!toy) return <div>Loading...</div>
 
     return (
-        <section className="toy-details">
-            <h2>Toy name : {toy.title}</h2>
-            <img className='details-img' src={toy.image} alt="" />
+        <section className="toy-details-container">
 
-            <h3>Price: ${toy.price}</h3>
-            <h3>Created at: {toy.createdAt}</h3>
-            <h3>{inventory}</h3>
-            <section>
-                {toy.labels.map((label, idx) =>
-                    <small key={label + idx} >{label} | </small>
-                )}
+            <section className='toy-details'>
+
+                <h2 className='toy-title'>{toy.title}</h2>
+
+
+                <p className='toy-description'>{toy.description}</p>
+
+                <section>
+                    {toy.labels.map((label, idx) =>
+                        <span key={label + idx} >{label} | </span>
+                    )}
+                </section>
+                <span className={`${dynInventoryClass}`}>{inventory}</span>
+
+                <section className='toy-price'>
+                <span>${toy.price} </span>
+                {user && !user.isAdmin && <button>Add to cart </button>}
+                </section>
+
+
+                {toy.reviews.length > 0 && <ReviewList user={loggedInUser} reviews={toy.reviews} onRemoveReview={onRemoveReview} toyId={toyId} />}
+
+                {user && !user.isAdmin &&
+                    <section className='customer-details-options'>
+                        <button> Add review
+                            <Link to={`/toy/${toy._id}/review`}></Link>
+                        </button>
+
+                        <button>Add to cart</button>
+                    </section>
+                }
+
+                {user && user.isAdmin &&
+                    <button> Edit
+                        <Link to={`/toy/edit/${toy._id}`}></Link>
+                    </button>
+                }
+
+                <button onClick={() => navigate('/toy')}> Back </button>
             </section>
 
-            {toy.reviews.length > 0 && <ReviewList reviews={toy.reviews} onRemoveReview={onRemoveReview} toyId={toyId} />}
-
-            <button onClick={() => navigate('/toy')}> Back </button>
-
-            <Link to={`/toy/edit/${toy._id}`}>
-                <button> Edit </button>
-            </Link>
-
-            <Link to={`/toy/${toy._id}/review`}>
-                <button> Add review </button>
-            </Link>
-        </section>)
+            <section className='details-img'>
+                <img src={toy.image} alt="" />
+            </section>
+        </section>
+    )
 }

@@ -1,16 +1,12 @@
 
-footer {
-  background-color: var(--clr1);
-  color: var(--clr1bg);
-  padding: 1em;
-  text-align: center;
-}
+
 
 
 .main-layout {
   display: grid;
   grid-template-columns: $layoutPadding 1fr $layoutPadding;
-  grid-template-rows: 150px 1fr 150px;
+  grid-template-rows: 150px 1fr 40px;
+  min-height: 100vh;
 
   > * {
       grid-column: 2;
