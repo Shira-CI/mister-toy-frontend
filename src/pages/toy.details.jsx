@@ -54,7 +54,7 @@ export function ToyDetails() {
     }
 
     const inventory = toy.inStock ? 'In stock' : 'Not available'
-    const dynInventoryClass = toy.inStock ? '' : 'red'
+    const dynInventoryClass = toy.inStock ? '' : 'red not-in-stock-msg'
 
     if (!toy) return <div>Loading...</div>
 
