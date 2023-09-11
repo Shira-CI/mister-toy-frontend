@@ -65,7 +65,7 @@ export function AppHeader() {
     return (
         <header className="app-header ">
             <div className="main-header">
-            <div className="logo"> 
+            <div className="logo" onClick={()=> navigate('/')}> 
             <img src="/logo.png" alt="Logo" />
              </div>
 
