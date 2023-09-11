@@ -36,7 +36,7 @@
 
     @include for-extra-wide-layout {
         @media (min-width: $break-extra-wide) {
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 
