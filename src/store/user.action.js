@@ -1,21 +1,22 @@
 import {
   SET_USER,
   SET_WATCHED_USER,
-  REMOVE_USER,
-  SET_USERS,
+  // REMOVE_USER,
+  // SET_USERS,
 } from './user.reducer.js'
+
 import { userService } from '../services/user.service.js'
 import { store } from './store.js'
 import { showErrorMsg } from '../services/event-bus.service'
 
-export async function removeUser(userId) {
-  try {
-    await userService.remove(userId)
-    store.dispatch({ type: 'REMOVE_USER', userId })
-  } catch (err) {
-    console.log('UserActions: err in removeUser', err)
-  }
-}
+// export async function removeUser(userId) {
+//   try {
+//     await userService.remove(userId)
+//     store.dispatch({ type: 'REMOVE_USER', userId })
+//   } catch (err) {
+//     console.log('UserActions: err in removeUser', err)
+//   }
+// }
 
 export async function login(credentials) {
   try {
@@ -65,7 +66,7 @@ export async function updateUser(user) {
 export async function loadUser(userId) {
   try {
     const user = await userService.getById(userId)
-    store.dispatch({ type: 'SET_WATCHED_USER', user })
+    store.dispatch({ type: SET_WATCHED_USER, user })
   } catch (err) {
     showErrorMsg('Cannot load user')
     console.log('Cannot load user', err)

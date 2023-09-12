@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from 'react-router-dom'
 
 import { toyService } from "../services/toy.service"
@@ -10,9 +10,6 @@ import { ToyFilter } from "../cmps/toy.filter"
 import { ToySort } from '../cmps/toy.sort'
 
 export function ToyIndex() {
-
-    const dispatch = useDispatch()
-
 
     const [filterBy, setFilterBy] = useState(toyService.getDefaultFilter())
     const [sortBy, setSortBy] = useState({ type: 'headline', desc: 1 })
@@ -30,6 +27,11 @@ export function ToyIndex() {
         setLoggedInUser(user)
     }, [filterBy, sortBy, user])
 
+
+    function onSetFilter(filterBy) {
+        // console.log('FilterBy', filterBy)
+        setFilterBy(filterBy)
+    }
 
     async function onRemoveToy(toyId) {
         try {
@@ -52,10 +54,7 @@ export function ToyIndex() {
     //     }
     // }
 
-    function onSetFilter(filterBy) {
-        // console.log('FilterBy', filterBy)
-        setFilterBy(filterBy)
-    }
+
 
     return (
         <section className='index-container'>
