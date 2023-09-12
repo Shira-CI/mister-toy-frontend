@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-export function ToyPreview({ toy, onRemoveToy, user }) {
+export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
     // console.log(user)
     return (
         <article className="toy-preview">
@@ -31,7 +31,7 @@ export function ToyPreview({ toy, onRemoveToy, user }) {
             </section>}
 
             {(!user || !user.isAdmin) && (toy.inStock) &&
-                <button className="add-to-cart-btn">Add to cart </button>
+                <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)}>Add to cart </button>
             }
         </article>
     )

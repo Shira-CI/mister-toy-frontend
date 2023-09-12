@@ -52,14 +52,14 @@ async function logout() {
 
 async function signup(userCred) {
   const user = await httpService.post('auth/signup', userCred)
-  console.log(user)
+  // console.log(user)
   return saveLocalUser(user)
 }
 
 
 function saveLocalUser(user) {
   // console.log('user.isAdmin:', user.isAdmin)
-  user = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin }
+  user = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin, wallet:user.wallet }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
   return user
 }
@@ -73,6 +73,7 @@ function getEmptyCredentials() {
     fullname: '',
     username: '',
     password: '',
+    wallet: 100,
     isAdmin: false,
   }
 }

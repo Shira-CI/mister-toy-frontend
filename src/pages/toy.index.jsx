@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from "react-redux"
+import { useSelector , useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 
 import { toyService } from "../services/toy.service"
@@ -8,6 +8,7 @@ import { loadToys, removeToy, saveToy } from "../store/toy.action"
 import { ToyList } from "../cmps/toy.list"
 import { ToyFilter } from "../cmps/toy.filter"
 import { ToySort } from '../cmps/toy.sort'
+import { ADD_TOY_TO_CART } from '../store/cart.reducer'
 
 export function ToyIndex() {
 
@@ -17,6 +18,7 @@ export function ToyIndex() {
     const user = useSelector((storeState) => storeState.userModule.user)
     const toys = useSelector((storeState) => storeState.toyModule.toys)
     const isLoading = useSelector((storeState) => storeState.toyModule.isLoading)
+    const dispatch = useDispatch()
     // console.log(toys)
     // console.log(user , 'user from store')
     // console.log(loggedInUser , 'user from index')
@@ -41,6 +43,11 @@ export function ToyIndex() {
         catch (err) {
             showErrorMsg('Cannot remove toy')
         }
+    }
+
+    function onAddToCart(toy){
+        console.log('added to cart')
+        dispatch({type: ADD_TOY_TO_CART , toy})
     }
 
     // async function onAddToy() {
@@ -74,8 +81,9 @@ export function ToyIndex() {
 
             <ToyList
                 toys={toys}
-                onRemoveToy={onRemoveToy}
                 user={loggedInUser}
+                onRemoveToy={onRemoveToy}
+                onAddToCart={onAddToCart}
             />
         </section>
     )

@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState, useRef } from 'react'
 import { logout, login } from '../store/user.action.js'
 import { LoginModal } from '../cmps/login.modal.jsx'
-// import { LoginModal } from '../assets/img/logo.png'
 
 import { ShoppingCart } from '../cmps/shopping.cart.jsx'
 import { SET_CART_IS_SHOWN } from '../store/cart.reducer.js'
@@ -85,17 +84,17 @@ export function AppHeader() {
                             <button className="logout-btn" onClick={onLogout}>Logout</button>
                         </span>}
 
+                        {(!user.isAdmin) && <span>wallet: {user.wallet}$</span>  }
+
                     </section>
+
                 ) : (
+                        <section className="no-logged-in-user">
+                            <LoginSignup />
+                            <button className="demo-login" onClick={openDemoLogin}>Try demo login!</button>
+                        </section>
+                    )}
 
-                    <section className="no-logged-in-user">
-                        <LoginSignup />
-                        <button className="demo-login" onClick={openDemoLogin}>Try demo login!</button>
-                    </section>
-
-
-
-                )}
                 {isModalOpen && <LoginModal closeDemoLogin={closeDemoLogin} login={login} logout={logout} />}
 
             </div>
