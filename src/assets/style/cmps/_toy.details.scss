@@ -25,7 +25,7 @@
         width: 50%;
 
         .toy-description {
-            font-size: 1.15em;
+            font-size: 1.18em;
         }
 
         .toy-title {
@@ -41,8 +41,13 @@
             }
         }
 
-        .not-in-stock-msg{
-            margin: 15px 0;
+        .toy-inventory{
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .toy-labels{
+            margin-top: 15px;
         }
 
         button {

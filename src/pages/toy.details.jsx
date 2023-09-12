@@ -54,7 +54,7 @@ export function ToyDetails() {
     }
 
     const inventory = toy.inStock ? 'In stock' : 'Not available'
-    const dynInventoryClass = toy.inStock ? '' : 'red not-in-stock-msg'
+    const dynInventoryClass = toy.inStock ? '' : 'red'
 
     if (!toy) return <div>Loading...</div>
 
@@ -68,12 +68,13 @@ export function ToyDetails() {
 
                 <p className='toy-description'>{toy.description}</p>
 
-                <section>
+                <section className='toy-labels'>
                     {toy.labels.map((label, idx) =>
                         <span key={label + idx} >{label} | </span>
                     )}
                 </section>
-                <span className={`${dynInventoryClass}`}>{inventory}</span>
+
+                <span className={`${dynInventoryClass} toy-inventory`}>{inventory}</span>
 
                 <section className='toy-price'>
                     <span>${toy.price} </span>
@@ -105,7 +106,7 @@ export function ToyDetails() {
                     </button>
                 }
 
-                {/* <button onClick={() => navigate('/toy')}> Back </button> */}
+                <button onClick={() => navigate('/toy')}> Back </button>
             </section>
 
             <section className='details-img'>
