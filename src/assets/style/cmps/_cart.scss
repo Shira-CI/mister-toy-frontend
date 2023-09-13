@@ -1,0 +1,41 @@
+.cart-container{
+    
+    .cart{
+        position: fixed;
+        top: 70px;
+        right: 20px;
+        padding: 30px 40px;
+        background-color: rgb(253, 253, 253);
+        z-index: 3;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        display: flex;
+        flex-direction: column;
+
+        h2{
+            margin-bottom: 5px;
+        }
+
+        ul{
+            list-style: none;
+            margin: 10px 0;
+            font-size: 1.125em;
+
+            li{
+                margin-bottom: 10px;
+            }
+
+        }
+
+        .remove-toy-from-cart{
+            margin: 0;
+            margin-right: 5px;
+
+        }
+
+        .cart-total{
+            margin: 10px 0;
+            text-align: center;
+            font-size: 1.25em;
+        }
+    }
+}

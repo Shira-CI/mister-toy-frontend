@@ -108,7 +108,6 @@ export function AppHeader() {
                 </a>
             </nav>
 
-            <ShoppingCart isCartShown={isCartShown} />
         </header>
 
 

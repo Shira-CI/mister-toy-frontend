@@ -12,6 +12,7 @@ import { ToyEdit } from './pages/toy.edit'
 import { ToyDetails } from './pages/toy.details'
 import {UserMsg} from './cmps/user.msg'
 import { AddReview } from './cmps/add.review'
+import { ShoppingCart } from './cmps/shopping.cart';
 
 export default function App() {
     return (
@@ -33,6 +34,7 @@ export default function App() {
                     </main>
                     <AppFooter />
                     <UserMsg />
+                    <ShoppingCart />
                 </section>
             </Router>
         </Provider>
