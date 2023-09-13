@@ -4,7 +4,7 @@ import { REMOVE_TOY_FROM_CART, SET_CART_IS_SHOWN } from '../store/cart.reducer.j
 
 import { checkout } from '../store/user.action.js'
 
-import {showErrorMsg} from '../services/event-bus.service.js'
+import {showErrorMsg , showSuccessMsg} from '../services/event-bus.service.js'
 
 
 export function ShoppingCart() {
@@ -27,17 +27,13 @@ export function ShoppingCart() {
 
     async function onCheckout() {
         const amount = getCartTotal()
-        // console.log(amount)
         try {
-            // const updatedUser = await checkout(-amount)
             await checkout(-amount)
             dispatch({ type: SET_CART_IS_SHOWN, isCartShown: false })
+            showSuccessMsg(`Charged you: $ ${amount.toLocaleString()}`)
+
         } catch (err) {
-            // console.log('no credit')
-
             showErrorMsg('no credit')
-
-            //    console.log(`Charged you: $ ${amount.toLocaleString()}`)
         }
     }
 
