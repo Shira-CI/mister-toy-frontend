@@ -89,7 +89,7 @@ export function AppHeader() {
                 ) : (
                         <section className="no-logged-in-user">
                             <LoginSignup />
-                            <button className="demo-login" onClick={openDemoLogin}>Try demo login!</button>
+                            <button className="demo-login-btn" onClick={openDemoLogin}>Try demo login!</button>
                         </section>
                     )}
 

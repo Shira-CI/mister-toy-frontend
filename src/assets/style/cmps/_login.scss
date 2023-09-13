@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  padding-top: 40px;
+  // padding-top: 40px;
   gap: 30px;
 
   button:hover {
@@ -22,12 +22,14 @@
 .demo-login-modal {
   background-color: #ff6488a0;
   position: absolute;
+  bottom: 5px;
   top: 20%;
   left: 50%;
   transform: translate(-50%, 0);
   padding: 25px;
   border-radius: 2em;
-z-index: 5;
+  z-index: 5;
+
   .modal-content {
     display: flex;
     flex-direction: column;
@@ -36,11 +38,36 @@ z-index: 5;
 
 .credentials-page {
   display: flex;
-  padding: 10px;
-  flex-direction: column;
+  margin-right: 15px;
+
+
+}
+
+@include for-mobile-layout {}
+
+@include for-wide-layout {
+  .credentials-page {
+    padding: 5px;
+
+    flex-direction: column;
+  }
 
   .btns {
-    align-self: center;
+    position: relative;
+    bottom: 11px;
+    left: 50px;
+  }
+}
 
+@include for-extra-wide-layout {
+  .credentials-page {
+    padding: 10px;
+
+    flex-direction: row;
+  }
+
+  .btns {
+    position: static;
+    align-self: center;
   }
 }

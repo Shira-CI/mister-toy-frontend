@@ -13,11 +13,11 @@
   z-index: 2;
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1fr 1400px 1fr;
-  grid-row: 1fr;
+  // grid-template-columns: 1fr 1400px 1fr;
+  grid-row: 70px;
   // align-items: center;
 
-   >* {
+  >* {
     grid-column: 2;
   }
 
@@ -37,6 +37,7 @@
     gap: 20px;
     align-items: center;
     grid-row: 1;
+
 
     .logged-in-user {
       position: relative;
@@ -59,8 +60,6 @@
 
         .logout-btn {
           background-color: rgba(240, 255, 255, 0);
-
-          &:hover {}
         }
       }
     }
@@ -80,14 +79,21 @@
   .no-logged-in-user {
     display: flex;
     align-items: center;
+    position: relative;
 
-    .demo-login {
+    .demo-login-btn {
       background-color: $clr6 ;
       border-radius: 50%;
       width: 6em;
       height: 6em;
       font-size: 1.15em;
       margin-left: 20px;
+      position: absolute;
+      // right: 40%;
+      // bottom: 100%;
+     
+      z-index: 2;
+      // top: 100%;
     }
   }
 
@@ -105,10 +111,21 @@
 
   }
 
-  // @include for-narrow-layout {
-  //   nav{
 
-  //     width: 40%;
-  //   }
-  // }
+  @include for-wide-layout{
+    grid-template-columns: 1fr 1100px 1fr;
+
+    .demo-login-btn{
+      right:-6em;
+    }
+  
+
+  }
+  @include  for-extra-wide-layout {
+    grid-template-columns: 1fr 1400px 1fr;
+    .demo-login-btn{
+      // top: auto;
+    }
+
+  }
 }
