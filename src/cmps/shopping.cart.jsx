@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"
 
-import {REMOVE_TOY_FROM_CART} from '../store/cart.reducer.js'
+import {REMOVE_TOY_FROM_CART , SET_CART_IS_SHOWN} from '../store/cart.reducer.js'
 
 import {checkout} from '../store/user.action.js'
 
@@ -23,10 +23,12 @@ export function ShoppingCart() {
         return cart.reduce((acc , toy) => acc + toy.price , 0)
     }
 
-   async function onCheckOut(){
+   async function onCheckout(){
         const amount = getCartTotal()
         // console.log(amount)
        await checkout(-amount)
+       dispatch({type: SET_CART_IS_SHOWN , isCartShown:false})
+
        console.log(`Charged you: $ ${amount.toLocaleString()}`)
 
     }
@@ -46,7 +48,7 @@ export function ShoppingCart() {
                 )}
             </ul>
             <p className="cart-total">Total: ${total} </p>
-            <button disabled={!user || !total} onClick={onCheckOut}>Checkout</button>
+            <button className="checkout-btn" disabled={!user || !total} onClick={onCheckout}>Checkout</button>
         </section>
         </section>
     )

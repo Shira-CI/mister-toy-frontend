@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSelector , useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 
 import { toyService } from "../services/toy.service"
@@ -8,16 +8,20 @@ import { loadToys, removeToy, saveToy } from "../store/toy.action"
 import { ToyList } from "../cmps/toy.list"
 import { ToyFilter } from "../cmps/toy.filter"
 import { ToySort } from '../cmps/toy.sort'
-import { ADD_TOY_TO_CART } from '../store/cart.reducer'
+import { ADD_TOY_TO_CART, SET_CART_IS_SHOWN } from '../store/cart.reducer'
 
 export function ToyIndex() {
 
     const [filterBy, setFilterBy] = useState(toyService.getDefaultFilter())
     const [sortBy, setSortBy] = useState({ type: 'headline', desc: 1 })
     const [loggedInUser, setLoggedInUser] = useState(null)
+
     const user = useSelector((storeState) => storeState.userModule.user)
     const toys = useSelector((storeState) => storeState.toyModule.toys)
     const isLoading = useSelector((storeState) => storeState.toyModule.isLoading)
+    const cart = useSelector((storeState) => storeState.cartModule.shoppingCart)
+
+
     const dispatch = useDispatch()
     // console.log(toys)
     // console.log(user , 'user from store')
@@ -45,9 +49,11 @@ export function ToyIndex() {
         }
     }
 
-    function onAddToCart(toy){
+    function onAddToCart(toy) {
         console.log('added to cart')
-        dispatch({type: ADD_TOY_TO_CART , toy})
+        dispatch({ type: ADD_TOY_TO_CART, toy })
+        dispatch({ type: SET_CART_IS_SHOWN, isCartShown: true })
+
     }
 
     // async function onAddToy() {
