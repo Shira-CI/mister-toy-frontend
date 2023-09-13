@@ -4,7 +4,7 @@ import { REMOVE_TOY_FROM_CART, SET_CART_IS_SHOWN } from '../store/cart.reducer.j
 
 import { checkout } from '../store/user.action.js'
 
-import {} from '../services/event-bus.service.js'
+import {showErrorMsg} from '../services/event-bus.service.js'
 
 
 export function ShoppingCart() {
