@@ -59,6 +59,7 @@ async function signup(userCred) {
 async function updateWallet(diff) {
   const user = await userService.getById(getLoggedinUser()._id)
   if (user.wallet + diff < 0) return Promise.reject('No credit')
+  // if (user.wallet + diff < 0) throw new Error('no credit')
   user.wallet += diff
  return userService.update(user)
 }

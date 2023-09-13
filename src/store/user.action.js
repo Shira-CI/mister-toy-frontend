@@ -26,11 +26,13 @@ export async function checkout(diff) {
     const user = await userService.updateWallet(diff)
     const newScore = user.wallet
 
-    console.log(newScore , 'newScore')
+    // console.log(newScore , 'newScore')
     store.dispatch({ type: SET_USER_SCORE, newScore })
     store.dispatch({ type: CLEAR_CART })
+    return user
   } catch (err) {
-    console.error('Cannot logout:', err)
+    console.error('Cannot checkout', err)
+    // console.log('Cannot checkout', err)
     throw err
   }
 
