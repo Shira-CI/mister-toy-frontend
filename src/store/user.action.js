@@ -1,9 +1,12 @@
 import {
   SET_USER,
   SET_WATCHED_USER,
-  // REMOVE_USER,
-  // SET_USERS,
+  SET_USER_SCORE
 } from './user.reducer.js'
+
+import { CLEAR_CART } from './cart.reducer.js'
+
+
 
 import { userService } from '../services/user.service.js'
 import { store } from './store.js'
@@ -17,6 +20,21 @@ import { showErrorMsg } from '../services/event-bus.service'
 //     console.log('UserActions: err in removeUser', err)
 //   }
 // }
+
+export async function checkout(diff) {
+  try {
+    const user = await userService.updateWallet(diff)
+    const newScore = user.wallet
+
+    console.log(newScore , 'newScore')
+    store.dispatch({ type: SET_USER_SCORE, newScore })
+    store.dispatch({ type: CLEAR_CART })
+  } catch (err) {
+    console.error('Cannot logout:', err)
+    throw err
+  }
+
+}
 
 export async function login(credentials) {
   try {

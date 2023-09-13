@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
     // console.log(user)
+
     return (
         <article className="toy-preview">
             <Link className="details-a-link" to={`/toy/${toy._id}`}>
@@ -31,8 +32,9 @@ export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
             </section>}
 
             {(!user || !user.isAdmin) && (toy.inStock) &&
-                <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)}>Add to cart </button>
+                 <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)}>Add to cart </button>
             }
+                {/* <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)} disabled = {!toy.inStock || !user  ? true : false}  >Add to cart </button> */}
         </article>
     )
 }

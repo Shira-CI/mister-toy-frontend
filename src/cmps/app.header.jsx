@@ -63,9 +63,7 @@ export function AppHeader() {
         setIsModalOpen(false)
     }
     function onUserGreet() {
-        // setIsUserMenuOpen(true)
         setIsUserMenuOpen(!isUserMenuOpen)
-        // console.log(isUserMenuOpen)
     }
 
     return (

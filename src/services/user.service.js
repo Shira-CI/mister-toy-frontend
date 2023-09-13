@@ -13,6 +13,7 @@ export const userService = {
   remove,
   update,
   getEmptyCredentials,
+  updateWallet
 }
 
 window.userService = userService
@@ -32,7 +33,6 @@ function remove(userId) {
 
 async function update(user) {
   await httpService.put(`user/${user._id}`, user)
-  // Handle case in which admin updates other user's details
   if (getLoggedinUser()._id === user._id) saveLocalUser(user)
   return user
 }
@@ -56,12 +56,18 @@ async function signup(userCred) {
   return saveLocalUser(user)
 }
 
+async function updateWallet(diff) {
+  const user = await userService.getById(getLoggedinUser()._id)
+  if (user.wallet + diff < 0) return Promise.reject('No credit')
+  user.wallet += diff
+ return userService.update(user)
+}
+
 
 function saveLocalUser(user) {
-  // console.log('user.isAdmin:', user.isAdmin)
-  user = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin, wallet:user.wallet }
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-  return user
+  const userToSave = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin, wallet: user.wallet }
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
+  return userToSave
 }
 
 function getLoggedinUser() {
@@ -73,7 +79,7 @@ function getEmptyCredentials() {
     fullname: '',
     username: '',
     password: '',
-    wallet: 100,
+    wallet: +100,
     isAdmin: false,
   }
 }
