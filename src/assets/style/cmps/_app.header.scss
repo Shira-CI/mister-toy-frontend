@@ -1,20 +1,14 @@
 .app-header {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // background-color: #f7f9f9;
-  // background-color: #f5f5f5;
   background-color: rgb(252, 252, 252);
   box-shadow: rgba(64, 62, 62, 0.1) 0px 4px 6px -1px, rgba(75, 70, 70, 0.06) 0px 2px 4px -1px;
-  height: 70px;
-  // padding: 20px 0;
+  height: min-content;
   position: sticky;
   top: 0;
   z-index: 2;
   grid-column: 1 / -1;
   display: grid;
-  // grid-template-columns: 1fr 1400px 1fr;
-  grid-row: 70px;
+
+  // grid-row: 70px;
   // align-items: center;
 
   >* {
@@ -33,11 +27,6 @@
   }
 
   .main-header {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    grid-row: 1;
-
 
     .logged-in-user {
       position: relative;
@@ -65,16 +54,6 @@
     }
   }
 
-  nav {
-    grid-row: 1;
-    justify-self: end;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px 0;
-
-  }
 
   .no-logged-in-user {
     display: flex;
@@ -84,23 +63,14 @@
     .demo-login-btn {
       background-color: $clr6 ;
       border-radius: 50%;
-      width: 6em;
-      height: 6em;
-      font-size: 1.15em;
       margin-left: 20px;
-      position: absolute;
-      // right: 40%;
-      // bottom: 100%;
-     
       z-index: 2;
-      // top: 100%;
     }
   }
 
 
-
-
   @include for-mobile-layout {
+    // 0-640
 
     // width: 25em;
     // height: 30em;
@@ -111,19 +81,90 @@
 
   }
 
-
-  @include for-wide-layout{
-    grid-template-columns: 1fr 1100px 1fr;
-
-    .demo-login-btn{
-      right:-6em;
-    }
-  
+  @include for-narrow-layout {
+    //640-900
 
   }
-  @include  for-extra-wide-layout {
-    grid-template-columns: 1fr 1400px 1fr;
+
+
+  @include for-normal-layout {
+    //900-1200
+    padding: 20px 0;
+    grid-template-columns: 1fr 800px 1fr;
+
+    .main-header {
+      display: flex;
+      gap: 10px;
+      grid-row: 1;
+      position: relative;
+      justify-content: space-between;
+    }
+
+    nav {
+      grid-row: 2;
+      justify-self: center;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .demo-login-btn{
+      width: 5em;
+      height: 5em;
+      font-size: 0.9em;
+    }
+
+  }
+
+
+  @include for-wide-layout {
+    //1200-1400
+
+    grid-template-columns: 1fr 1100px 1fr;
+
+    .main-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content:flex-start;
+      grid-row: 1;
+      width: fit-content;
+    }
+
+    .demo-login-btn {
+      position: absolute;
+
+      right: -6em;
+      width: 6em;
+      height: 6em;
+      font-size: 1.15em;
+    }
+
+    nav {
+      position: static;
+      grid-row: 1;
+      justify-self: end;
+      // display: flex;
+      // align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 0;
+
+    }
+   
+
+
+  }
+
+  @include for-extra-wide-layout {
+    //1400+
+    grid-template-columns: 1fr 1400px 1fr;
+.main-header{
+  // width: 50%;
+
+}
+    .demo-login-btn {
       // top: auto;
     }
 
