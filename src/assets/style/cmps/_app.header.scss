@@ -63,7 +63,8 @@
     .demo-login-btn {
       background-color: $clr6 ;
       border-radius: 50%;
-      margin-left: 20px;
+      // border-radius: 2em;
+      // margin-left: 20px;
       z-index: 2;
     }
   }
@@ -89,7 +90,6 @@
 
   @include for-normal-layout {
     //900-1200
-    padding: 20px 0;
     grid-template-columns: 1fr 800px 1fr;
 
     .main-header {
@@ -98,6 +98,10 @@
       grid-row: 1;
       position: relative;
       justify-content: space-between;
+    }
+
+    .logo{
+      align-self: center;
     }
 
     nav {
@@ -112,7 +116,7 @@
     .demo-login-btn{
       width: 5em;
       height: 5em;
-      font-size: 0.9em;
+      font-size: 0.8em;
     }
 
   }
@@ -122,8 +126,12 @@
     //1200-1400
 
     grid-template-columns: 1fr 1100px 1fr;
+    // padding:  0;
+
 
     .main-header {
+      grid-column: 2;
+
       display: flex;
       gap: 20px;
       align-items: center;
@@ -133,17 +141,19 @@
     }
 
     .demo-login-btn {
-      position: absolute;
+      // position: absolute;
 
-      right: -6em;
-      width: 6em;
-      height: 6em;
-      font-size: 1.15em;
+      // right: -6em;
+      // width: 5em;
+      // height: 5em;
+      font-size: 1em;
     }
 
     nav {
       position: static;
       grid-row: 1;
+      grid-column: 2;
+
       justify-self: end;
       // display: flex;
       // align-items: center;
@@ -159,7 +169,7 @@
 
   @include for-extra-wide-layout {
     //1400+
-    grid-template-columns: 1fr 1400px 1fr;
+    grid-template-columns: 1fr 1300px 1fr;
 .main-header{
   // width: 50%;
 
