@@ -1,7 +1,3 @@
-.padding {
-  padding: 10px;
-}
-
 
 .app-header {
   background-color: rgb(252, 252, 252);
@@ -30,7 +26,7 @@
   .main-header {
 
     .logged-in-user {
-      position: relative;
+      // position: relative;
       // left: 5px;
       align-self: center;
 
@@ -63,6 +59,7 @@
       z-index: 2;
     }
   }
+
 
 
   @include for-mobile-layout {
@@ -133,7 +130,7 @@
       display: flex;
       gap: 10px;
       grid-row: 1;
-      position: relative;
+      // position: relative;
 
 
       .logged-in-user {
@@ -145,14 +142,14 @@
     .no-logged-in-user {
       display: flex;
       align-items: center;
-      position: relative;
+      // position: relative;
 
 
       .demo-login-btn {
         width: 5em;
         height: 5em;
         font-size: 0.8em;
-        position: relative;
+        // position: relative;
       }
     }
 
@@ -182,7 +179,6 @@
     }
 
   }
-
 
   @include for-normal-layout {
     //900-1200
@@ -228,13 +224,10 @@
 
   }
 
-
   @include for-wide-layout {
     //1200-1400
 
     grid-template-columns: 1fr 1100px 1fr;
-
-
 
     .main-header {
       grid-column: 2;
@@ -245,12 +238,10 @@
       width: fit-content;
       .no-logged-in-user {
         padding-left: 0px;
+        .demo-login-btn {
+          font-size: 1em;
+        }
       }
-      
-    }
-
-    .demo-login-btn {
-      font-size: 1em;
     }
 
     nav {
@@ -274,4 +265,8 @@
     //1400+
     grid-template-columns: 1fr 1300px 1fr;
   }
+}
+
+.padding {
+  padding: 10px;
 }

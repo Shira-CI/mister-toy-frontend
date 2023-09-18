@@ -6,25 +6,7 @@
   }
 }
 
-.demo-login-modal {
-  background-color: #ff6488a0;
-  position: absolute;
-  bottom: 5px;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding: 25px;
-  border-radius: 2em;
-  z-index: 5;
 
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.credentials-page {
-}
 
 @include for-mobile-layout {
   .credentials-page {
@@ -34,20 +16,49 @@
     justify-content: center;
     gap: 5px;
   }
-  
+
   .login-form {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    // align-items: center;
 
     >* {
       height: min-content;
     }
 
-    button{
+    button {
       align-self: center;
       font-size: 0.875em;
+    }
+  }
+
+
+  .demo-login-modal {
+    background-color: #ff6488a0;
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 15px;
+    border-radius: 10%;
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+
+      button:hover {
+        color: rgb(23, 18, 22);
+        background-color: rgb(226, 225, 225);
+      }
+
+      .login-btns {
+        display: flex;
+
+        >* {
+          width: 6.25em;
+          height: 4em;
+        }
+      }
     }
   }
 }
@@ -57,6 +68,7 @@
     display: flex;
     flex-direction: column;
   }
+
   .login-form {
     display: flex;
     gap: 5px;
@@ -67,6 +79,22 @@
     }
   }
 
+  .demo-login-modal {
+    background-color: #ff6488a0;
+    position: absolute;
+    bottom: 5px;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 25px;
+    border-radius: 2em;
+    z-index: 5;
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 
 
 }
