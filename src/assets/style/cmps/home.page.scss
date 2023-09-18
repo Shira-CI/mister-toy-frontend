@@ -26,36 +26,39 @@
     padding: 0 15px;
   }
 
-  
-  
-  @include for-mobile-layout{
-    h2{
+
+
+  @include for-mobile-layout {
+    h2 {
       font-size: 3.5em;
       text-align: center;
     }
   }
-  
-  @include for-narrow-layout{
-    h2{
+
+  @include for-narrow-layout {
+    h2 {
       font-size: 3.5em;
 
     }
   }
-  @include for-normal-layout{
-    h2{
+
+  @include for-normal-layout {
+    h2 {
       font-size: 4em;
     }
   }
-  @include for-wide-layout{
-    h2{
+
+  @include for-wide-layout {
+    h2 {
       font-size: 5em;
     }
   }
-  @include for-extra-wide-layout{
-    h2{
+
+  @include for-extra-wide-layout {
+    h2 {
       font-size: 6em;
     }
-  
+
   }
 
 
@@ -67,6 +70,15 @@
 
 
 .app-footer {
-  // height: 100px;
-  background-color: #eaedf3;
+  background-color: rgb(252, 252, 252);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;  // background-color: #eaedf3;
+  text-align: center;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+
+  h3 {
+    font-size: 1em;
+    font-weight: 400;
+  }
 }

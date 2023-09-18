@@ -32,9 +32,9 @@ export default function App() {
 
                         </Routes>
                     </main>
-                    <AppFooter />
                     <UserMsg />
                     <ShoppingCart />
+                    <AppFooter />
                 </section>
             </Router>
         </Provider>
