@@ -73,7 +73,7 @@ export function ToyIndex() {
         <section className='index-container'>
 
             <section className='toys-filter-container'>
-                <ToyFilter onSetFilter={onSetFilter} />
+                {/* <ToyFilter onSetFilter={onSetFilter} /> */}
 
                 <ToySort sortBy={sortBy} setSortBy={setSortBy} />
 
