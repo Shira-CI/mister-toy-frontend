@@ -59,7 +59,7 @@
             }
         }
 
-        .toy-sort{
+        .toy-sort {
             display: flex;
             gap: 10px;
             justify-content: center;
@@ -70,25 +70,59 @@
 
     @include for-narrow-layout {
 
-        // display: flex;
-        // justify-content: space-between;
-
         button.add-toy-btn {
             align-self: flex-end;
         }
 
         .toy-filter {
-            // width: 70%;
-            // justify-content: space-around;
+
+            form {
+                display: grid;
+                grid-template-rows: auto 10px auto;
+
+                :nth-child(1),
+                :nth-child(2),
+                :nth-child(3),
+                :nth-child(4) {
+                    grid-row: 1;
+                }
+
+                :nth-child(5),
+                :nth-child(6),
+                :nth-child(7),
+                :nth-child(8) {
+                    grid-row: 3;
+                }
+
+                :nth-child(3),
+                :nth-child(7) {
+                    margin-left: 10px;
+                }
+            }
 
         }
 
+        .toy-sort {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: end;
+
+        }
 
     }
 
-    @include for-normal-layout {}
 
-    @include for-wide-layout {}
+    @include for-extra-wide-layout{
+        display: flex;
+        justify-content: space-between;
+        .toy-filter,
+        .toy-filter form {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+        }
+    }
 
 
 
