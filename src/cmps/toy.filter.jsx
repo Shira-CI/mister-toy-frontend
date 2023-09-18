@@ -38,7 +38,7 @@ export function ToyFilter({ onSetFilter }) {
             <input type="text"
                 id="title"
                 name="title"
-                placeholder="By name"
+                placeholder="Enter name"
                 value={filterByToEdit.title}
                 onChange={handleChange}
                 ref={elInputRef}
@@ -48,7 +48,7 @@ export function ToyFilter({ onSetFilter }) {
             <input type="number"
                 id="maxPrice"
                 name="maxPrice"
-                placeholder="By max price"
+                placeholder="Enter max price"
                 value={filterByToEdit.maxPrice}
                 onChange={handleChange}
             />

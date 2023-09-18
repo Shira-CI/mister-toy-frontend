@@ -1,9 +1,9 @@
 .toys-filter-container {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    font-size: 1.15em;
+    // display:flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // padding: 15px;
+    // font-size: 1.15em;
 
     button.add-toy-btn {
         background-color: $clr6 ;
@@ -15,82 +15,80 @@
     }
 
 
-    .toy-filter {
-        display: flex;
-      
-
-    form {
-            display: flex;
-            // justify-content: space-around;
-            gap: 15px;
-            // align-items: center;
+    // .toy-filter {
+    //     display: flex;
 
 
-            input {
-                // height: 60%;
-            }
-        }
-    }
+    // form {
+    //         display: flex;
+    //         // justify-content: space-around;
+    //         gap: 15px;
+    //         // align-items: center;
 
-    .toy-sort{
-        display: flex;
-        gap: 10px;
-        .sort-type{
-        }
-    }
+
+    //         input {
+    //             // height: 60%;
+    //         }
+    //     }
+    // }
+
+    // .toy-sort{
+    //     display: flex;
+    //     gap: 10px;
+    //     .sort-type{
+    //     }
+    // }
 
 
     @include for-mobile-layout {
-        @media (max-width: $break-mobile) {
+        font-size: 1.1em;
+
+        .toy-filter {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            justify-content: center;
 
-            .toy-filter {
+            form {
+                display: flex;
                 flex-direction: column;
-                align-items: center;
-                width: 100%;
+                gap: 2px;
 
-                form {
-                    flex-direction: column;
-                    width: 100%;
-                }
-
-                input{
-                    width: 60%;
+                input,
+                select {
+                    margin-bottom: 10px;
                 }
             }
+        }
+
+        .toy-sort{
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 10px 0;
+
         }
     }
 
     @include for-narrow-layout {
-        @media (min-width: $break-narrow) {
 
-            // display: flex;
-            // justify-content: space-between;
+        // display: flex;
+        // justify-content: space-between;
 
-            button.add-toy-btn {
-                align-self: flex-end;
-            }
+        button.add-toy-btn {
+            align-self: flex-end;
+        }
 
-            .toy-filter{
-                // width: 70%;
-                // justify-content: space-around;
-
-            }
-
+        .toy-filter {
+            // width: 70%;
+            // justify-content: space-around;
 
         }
+
+
     }
 
-    @include for-normal-layout {
-        @media (min-width: $break-normal) {}
-    }
+    @include for-normal-layout {}
 
-    @include for-wide-layout {
-        @media (min-width: $break-wide) {}
-    }
+    @include for-wide-layout {}
 
 
 

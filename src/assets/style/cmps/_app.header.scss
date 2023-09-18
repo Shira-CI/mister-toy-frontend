@@ -76,6 +76,9 @@
       .logged-in-user {
         display: flex;
         flex-direction: column;
+        .user-greet{
+          padding: 2px 0;
+        }
       }
     }
 
@@ -116,7 +119,7 @@
     .logo {
       width: 150px;
       height: 40px;
-      margin: 10px 5px;
+      margin: 10px 5px 0px 0px;
     }
 
   }
@@ -175,7 +178,7 @@
     .logo {
       width: 150px;
       height: 40px;
-      margin: 10px 5px;
+      margin: 10px 5px 0px 0px;
     }
 
   }
