@@ -1,9 +1,11 @@
-import headerImg from "../assets/img/fluffy.jpg"
+import mainImg from "../assets/img/fluffy.jpg"
 
 export function HomePage() {
 
     return <section className="home-page">
-        <img className="full" src={headerImg} alt="" />
-        <p>Welcome to Mister Toy!</p>
+        <div className="main-img-container ">
+        {/* <img  src={mainImg} alt="" /> */}
+        <h2>Welcome to Mister Toy!</h2>
+             </div>
     </section>
 }
