@@ -34,7 +34,7 @@
 
 
   .demo-login-modal {
-    background-color: #ff6488a0;
+    background-color: #f86a8bed;
     position: fixed;
     top: 22%;
     left: 50%;
@@ -63,7 +63,7 @@
   }
 }
 
-@include for-narrow-layout {
+@include for-narrow-layout {       //640-900
   .credentials-page {
     display: flex;
     flex-direction: column;
@@ -80,31 +80,42 @@
   }
 
   .demo-login-modal {
-    background-color: #ff6488a0;
-    position: absolute;
-    bottom: 5px;
-    top: 20%;
+    background-color: #f86a8bed;
+    position: fixed;
+    top: 13%;
     left: 50%;
     transform: translate(-50%, 0);
-    padding: 25px;
-    border-radius: 2em;
-    z-index: 5;
+    padding: 15px;
+    border-radius: 10%;
 
     .modal-content {
       display: flex;
       flex-direction: column;
+
+      button:hover {
+        color: rgb(23, 18, 22);
+        background-color: rgb(226, 225, 225);
+      }
+
+      .login-btns {
+        display: flex;
+
+        >* {
+          width: 6.25em;
+          height: 4em;
+        }
+      }
     }
   }
-
-
 }
 
-@include for-normal-layout {
+@include for-normal-layout {    //900-1200
   .credentials-page {
     display: inline-block;
-    // grid-row: 2;
   }
-
+  .demo-login-modal {
+    top: 14%;
+  }
   .login {
     width: auto;
   }
@@ -142,6 +153,10 @@
     font-size: 1em;
     text-align: start;
     padding-right: 0;
+  }
+
+  .demo-login-modal {
+    top: 12%;
   }
 }
 
