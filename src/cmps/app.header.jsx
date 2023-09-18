@@ -66,8 +66,11 @@ export function AppHeader() {
         setIsUserMenuOpen(!isUserMenuOpen)
     }
 
+    const dynHeaderPadding = user ? 'padding' : ''
+    const dynNavPosition = user ? 'upper-nav' : 'bottom-nav'
+
     return (
-        <header className="app-header ">
+        <header className={`app-header ${dynHeaderPadding}`}>
             <div className="main-header">
                 <div className="logo" onClick={() => navigate('/')}>
                     <img src="/logo.png" alt="Logo" />
@@ -96,7 +99,7 @@ export function AppHeader() {
                 {isModalOpen && <LoginModal closeDemoLogin={closeDemoLogin} login={login} logout={logout} />}
 
             </div>
-            <nav>
+            <nav className={`${dynNavPosition}`}>
                 <NavLink to="/">Home</NavLink> |
                 <NavLink to="/toy">Toys</NavLink> |
                 <NavLink to="/about">About</NavLink> |

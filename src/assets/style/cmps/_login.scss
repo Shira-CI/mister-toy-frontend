@@ -1,13 +1,24 @@
 .login {
- 
+
   button:hover {
     color: rgb(11, 10, 9);
     background-color: rgb(222, 222, 222);
     transition: .3s;
   }
 
-  .login-form>* {
-    margin: 10px;
+  // .login-form>* {
+  //   margin: 10px;
+  // }
+
+  .login-form {
+    display: flex;
+    // flex-direction: column;
+    gap: 5px;
+    align-items: center;
+
+    >* {
+      height: min-content;
+    }
   }
 
 
@@ -39,14 +50,30 @@
 
 @include for-mobile-layout {}
 
-@include for-narrow-layout {}
+@include for-narrow-layout {
+  .credentials-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-form {
+
+    // width: min-content;
+  }
+
+}
 
 @include for-normal-layout {
   .credentials-page {
+    display: inline-block;
     // grid-row: 2;
   }
 
-  .btns{
+  .login {
+    width: auto;
+  }
+
+  .btns {
     font-size: 0.9em;
     text-align: end;
     padding-right: 10px;
@@ -56,14 +83,14 @@
 
 @include for-wide-layout {
 
-.login{
+  .login {
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  gap: 30px;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 30px;
+  }
 
   .credentials-page {
     display: flex;
