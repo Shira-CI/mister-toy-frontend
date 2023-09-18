@@ -68,11 +68,58 @@
   @include for-mobile-layout {
     // 0-640
 
-    // width: 25em;
-    // height: 30em;
+    grid-template-columns: 1fr 400px 1fr;
+
+    .main-header {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+
+
+      .logged-in-user {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .no-logged-in-user {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding-top: 20px;
+      // align-items: center;
+      // position: relative;
+
+      .demo-login-btn {
+        width: 6em;
+        height: 6em;
+        font-size: 1em;
+      }
+    }
+
     nav {
-      width: 70%;
-      margin: auto;
+      justify-self: end;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 5px;
+      font-size: 1em;
+    }
+
+    .user-nav {
+      grid-row: 2;
+    }
+
+    .no-user-nav {
+      grid-row: 2;
+      justify-self: center;
+    }
+
+    .logo {
+      width: 150px;
+      height: 40px;
+      margin: 10px 5px;
     }
 
   }
@@ -88,6 +135,7 @@
       grid-row: 1;
       position: relative;
 
+
       .logged-in-user {
         display: flex;
         flex-direction: column;
@@ -98,6 +146,7 @@
       display: flex;
       align-items: center;
       position: relative;
+
 
       .demo-login-btn {
         width: 5em;
@@ -117,11 +166,11 @@
       font-size: 0.95em;
     }
 
-    .upper-nav {
+    .user-nav {
       grid-row: 1;
     }
 
-    .bottom-nav {
+    .no-user-nav {
       grid-row: 2;
       justify-self: center;
     }
@@ -139,35 +188,44 @@
     //900-1200
     grid-template-columns: 1fr 800px 1fr;
 
+    .main-header {
+      .no-logged-in-user {
+        padding-left: 120px;
+      }
 
+      .logged-in-user {
+        display: inline-block;
+
+        .user-greet {
+          padding: 0 10px;
+        }
+      }
+    }
 
     .logo {
       align-self: center;
       width: 150px;
       height: 40px;
-      // margin: 10px 5px;
-
     }
 
     .user-greet {
       font-size: 1.3em;
-
     }
 
     nav {
       font-size: 1.2em;
     }
 
-    .main-header{
-
-      .logged-in-user {
-        display: inline-block;
-
-        .user-greet{
-          padding: 0 10px;
-        }
-      }
+    .user-nav {
+      grid-row: 1;
     }
+
+    .no-user-nav {
+      grid-row: 2;
+      justify-self: end;
+    }
+
+
   }
 
 
@@ -176,14 +234,7 @@
 
     grid-template-columns: 1fr 1100px 1fr;
 
-    .upper-nav {
-      grid-row: 1;
-    }
 
-    .bottom-nav {
-      grid-row: 1;
-      justify-self: end;
-    }
 
     .main-header {
       grid-column: 2;
@@ -192,6 +243,10 @@
       justify-content: flex-start;
       grid-row: 1;
       width: fit-content;
+      .no-logged-in-user {
+        padding-left: 0px;
+      }
+      
     }
 
     .demo-login-btn {
@@ -203,6 +258,15 @@
       grid-column: 2;
       justify-self: end;
       gap: 10px;
+    }
+
+    .user-nav {
+      grid-row: 1;
+    }
+
+    .no-user-nav {
+      grid-row: 1;
+      justify-self: end;
     }
   }
 

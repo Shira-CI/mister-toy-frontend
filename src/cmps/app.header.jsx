@@ -67,7 +67,7 @@ export function AppHeader() {
     }
 
     const dynHeaderPadding = user ? 'padding' : ''
-    const dynNavPosition = user ? 'upper-nav' : 'bottom-nav'
+    const dynNavPosition = user ? 'user-nav' : 'no-user-nav'
 
     return (
         <header className={`app-header ${dynHeaderPadding}`}>
