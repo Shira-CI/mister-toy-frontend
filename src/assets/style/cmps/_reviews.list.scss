@@ -24,5 +24,10 @@
         font-size: 1.25em;
     }
 
- 
+    .review-preview {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
 }

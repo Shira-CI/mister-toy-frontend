@@ -106,7 +106,7 @@ export function ToyDetails() {
                     </button>
                 }
 
-                <button onClick={() => navigate('/toy')}> Back </button>
+                <button className='back-btn-details' onClick={() => navigate('/toy')}> Back </button>
             </section>
 
             <section className='details-img'>

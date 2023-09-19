@@ -1,14 +1,11 @@
 .toy-details-container {
     display: flex;
-    // flex-direction: column;
-    // align-items: center;
     justify-content: space-evenly;
     margin: 50px 0;
     gap: 20px;
 
     .details-img {
-        width: 60vh;
-        height: 60vh;
+
 
         img {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -52,10 +49,14 @@
 
         button {
             background-color: #f0416a;
-            width: 20%;
+            // width: 20%;
             margin: 5px;
             font-size: 1.15em;
             border-radius: 2em
+        }
+
+        .back-btn-details{
+            width: min-content;
         }
     }
 
@@ -63,5 +64,37 @@
      
     }
 
+    @include for-mobile-layout{
+        // background-color: yellow;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+
+     
+        .toy-details,
+        .details-img{
+            width: 100%;
+        }
+            .details-img{
+                height: 40vh;
+                float: right;
+                shape-outside: circle(40%);
+                margin: 0;
+                margin-right: 0px;
+                grid-row: 1;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+    }
+
+    @include for-narrow-layout{
+        .details-img {
+
+            height: 60vh;
+        }
+
+    }
 
 }
