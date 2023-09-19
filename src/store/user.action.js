@@ -4,7 +4,7 @@ import {
   SET_USER_SCORE
 } from './user.reducer.js'
 
-import { CLEAR_CART } from './cart.reducer.js'
+import { CLEAR_CART, SET_CART_IS_SHOWN } from './cart.reducer.js'
 
 
 
@@ -54,6 +54,7 @@ export async function logout() {
     const user = await userService.logout()
     store.dispatch({ type: SET_USER, user: null })
     store.dispatch({ type: CLEAR_CART })
+    store.dispatch({ type: SET_CART_IS_SHOWN, isCartShown: false })
 
 
     return user

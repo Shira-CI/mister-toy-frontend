@@ -1,0 +1,118 @@
+.cart-btn {
+    position: relative;
+}
+
+.cart {
+    position: absolute;
+  
+    background-color: rgb(253, 253, 253);
+    z-index: 3;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+
+
+    h2 {
+        margin-bottom: 5px;
+    }
+
+    ul {
+        list-style: none;
+        // margin: 15px 0;
+        // font-size: 1.09em;
+
+        // li {
+        //     margin-bottom: 15px;
+        // }
+
+    }
+
+    .remove-toy-from-cart {
+        margin: 0;
+        margin-right: 5px;
+
+    }
+
+    .cart-total {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 1.25em;
+        text-decoration: underline;
+    }
+
+    .checkout-btn {
+        background-color: $clr6;
+        border-radius: 10%;
+        padding: 10px 15px;
+    }
+
+    @include for-mobile-layout{
+        padding: 15px 25px;
+        right: -7px;
+        top: 2.4em ;
+
+        ul{
+            margin: 10px 0 0 0;
+            font-size: 1em;
+    
+            li {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    @include for-narrow-layout {
+        //640-900
+        padding: 15px 25px;
+        right: -7px;
+        top: 3.5em ;
+
+        ul{
+            margin: 15px 0;
+            font-size: 1.05em;
+    
+            li {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    @include for-normal-layout{
+        //900-1200
+        padding: 15px 25px;
+        right: -7px;
+        top: 2.604em;
+
+        ul{
+            margin: 15px 0;
+            font-size: 1.05em;
+    
+            li {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    @include for-wide-layout {
+        //1200-1400
+
+        right: -5px;
+
+    }
+
+    @include for-extra-wide-layout {
+        //1400+
+        padding: 30px 40px;
+
+        ul{
+            margin: 15px 0;
+            font-size: 1.09em;
+    
+            li {
+                margin-bottom: 15px;
+            }
+        }
+
+    }
+}

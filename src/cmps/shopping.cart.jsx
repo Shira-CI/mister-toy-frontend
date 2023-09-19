@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 
 import { REMOVE_TOY_FROM_CART, SET_CART_IS_SHOWN } from '../store/cart.reducer.js'
 
@@ -7,12 +7,12 @@ import { checkout } from '../store/user.action.js'
 import {showErrorMsg , showSuccessMsg} from '../services/event-bus.service.js'
 
 
-export function ShoppingCart() {
+export function ShoppingCart({user, cart}) {
     const dispatch = useDispatch()
 
-    const isCartShown = useSelector((storeState) => storeState.cartModule.isCartShown)
-    const cart = useSelector((storeState) => storeState.cartModule.shoppingCart)
-    const user = useSelector((storeState) => storeState.userModule.user)
+    // const isCartShown = useSelector((storeState) => storeState.cartModule.isCartShown)
+    // const cart = useSelector((storeState) => storeState.cartModule.shoppingCart)
+    // const user = useSelector((storeState) => storeState.userModule.user)
     // console.log(cart)
 
 
@@ -22,6 +22,7 @@ export function ShoppingCart() {
     }
 
     function getCartTotal() {
+        if (!cart )return
         return cart.reduce((acc, toy) => acc + toy.price, 0)
     }
 
@@ -37,23 +38,24 @@ export function ShoppingCart() {
         }
     }
 
-    if (!isCartShown) return <span></span>
+    // if (!isCartShown) return <span></span>
     const total = getCartTotal()
+    if (!cart )return
 
     return (
-        <section className="cart-container">
+        // <section className="cart-container">
             <section className="cart">
                 <h2>Your Cart</h2>
                 <ul>
                     {cart.map((toy, idx) => <li key={idx}>
                         <button className="remove-toy-from-cart" onClick={() => onRemoveFromCart(toy._id)} > x </button>
-                        {toy.title} | {toy.price}
+                        {toy.title} | {toy.price} $
                     </li>
                     )}
                 </ul>
-                <p className="cart-total">Total: ${total} </p>
+                <p className="cart-total">Total: {total}$ </p>
                 <button className="checkout-btn" disabled={!user || !total} onClick={onCheckout}>Checkout</button>
             </section>
-        </section>
+        // </section>
     )
 }

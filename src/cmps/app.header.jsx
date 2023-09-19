@@ -11,7 +11,9 @@ import { SET_CART_IS_SHOWN } from '../store/cart.reducer.js'
 
 export function AppHeader() {
     const user = useSelector((storeState) => storeState.userModule.user)
+
     const isCartShown = useSelector((storeState) => storeState.cartModule.isCartShown)
+    const cart = useSelector((storeState) => storeState.cartModule.shoppingCart)
 
     const dispatch = useDispatch()
 
@@ -103,11 +105,12 @@ export function AppHeader() {
                 <NavLink to="/">Home</NavLink> |
                 <NavLink to="/toy">Toys</NavLink> |
                 <NavLink to="/about">About</NavLink> |
-                <a href="#" onClick={(ev) => {
+                <a href="#" className="cart-btn" onClick={(ev) => {
                     ev.preventDefault()
                     dispatch({ type: SET_CART_IS_SHOWN, isCartShown: !isCartShown })
                 }}>
                     🛒 Cart
+                 {isCartShown &&   <ShoppingCart user={user} cart={cart}/>}
                 </a>
             </nav>
 
