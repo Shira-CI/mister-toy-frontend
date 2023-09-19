@@ -1,0 +1,31 @@
+.add-review,
+.add-review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+    font-size: 1.1em;
+
+    .add-review-form {
+        gap: 10px;
+        margin: 20px 0;
+
+    }
+
+    button {
+        background-color: $clr6 ;
+        border-radius: 2em;
+    }
+
+
+
+    @include for-mobile-layout{
+        font-size: 1em;
+
+        h2{
+            font-size: 1.32em;
+
+        }
+
+    }
+}

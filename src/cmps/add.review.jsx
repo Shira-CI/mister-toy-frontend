@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useParams} from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { toyService } from '../services/toy.service'
 
 
@@ -28,8 +28,8 @@ export function AddReview() {
 
     return (
         <section className="add-review">
-
-            <form onSubmit={onSaveReview} className="add-review-form flex flex-column justify-center">
+            <h2>Add your review</h2>
+            <form onSubmit={onSaveReview} className="add-review-form">
 
                 <label htmlFor="fullname">Full Name:</label>
                 <input required onChange={handleChange} value={fullname}
@@ -51,7 +51,7 @@ export function AddReview() {
 
                 <button>Add Review</button>
             </form>
-                <button onClick={()=> navigate(`/toy/${params.toyId}`)}>Cancel</button>
+            <button onClick={() => navigate(`/toy/${params.toyId}`)}>Cancel</button>
         </section>
     )
 }
