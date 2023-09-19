@@ -53,6 +53,9 @@ export async function logout() {
   try {
     const user = await userService.logout()
     store.dispatch({ type: SET_USER, user: null })
+    store.dispatch({ type: CLEAR_CART })
+
+
     return user
   } catch (err) {
     console.log('Cannot logout', err)
