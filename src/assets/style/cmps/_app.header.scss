@@ -26,8 +26,6 @@
   .main-header {
 
     .logged-in-user {
-      // position: relative;
-      // left: 5px;
       align-self: center;
 
       .user-greet {
@@ -87,8 +85,6 @@
       justify-content: center;
       gap: 10px;
       padding-top: 20px;
-      // align-items: center;
-      // position: relative;
 
       .demo-login-btn {
         width: 6em;
@@ -98,7 +94,7 @@
     }
 
     nav {
-      justify-self: end;
+      justify-self: center;
       font-size: 1.2em;
       display: flex;
       align-items: center;
@@ -133,8 +129,6 @@
       display: flex;
       gap: 10px;
       grid-row: 1;
-      // position: relative;
-
 
       .logged-in-user {
         display: flex;
@@ -145,14 +139,11 @@
     .no-logged-in-user {
       display: flex;
       align-items: center;
-      // position: relative;
-
 
       .demo-login-btn {
         width: 5em;
         height: 5em;
         font-size: 0.8em;
-        // position: relative;
       }
     }
 
@@ -161,7 +152,7 @@
       font-size: 1.2em;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
       margin: 5px;
       font-size: 0.95em;
     }
