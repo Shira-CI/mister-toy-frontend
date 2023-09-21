@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 import { toyService } from "../services/toy.service.js"
-import { labelService } from '../services/label.service.js'
 import { Link } from 'react-router-dom'
 import { uploadService } from '../services/upload.service.js'
 
@@ -11,20 +10,22 @@ import { uploadService } from '../services/upload.service.js'
 export function ToyEdit() {
 
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
-    const [labels, setLabels] = useState([])
+    const [labelToSave, setLabelToSave] = useState('')
     const [toyImage, setToyImage] = useState(null)
 
+    // console.log(toyToEdit.labels)
+    // console.log(labelToSave)
 
     const { toyId } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        // if (!toyId) return
-        labelService.query()
-            .then(labels => {
-                setLabels(labels)
-                if (toyId) loadToy()
-            })
+        if (toyId) {
+            loadToy()
+                .then(toy => {
+                    // console.log(toyToEdit.labels)
+                })
+        }
     }, [])
 
 
@@ -42,6 +43,7 @@ export function ToyEdit() {
     async function loadToy() {
         try {
             const toy = await toyService.getById(toyId)
+            // console.log(toy)
             setToyToEdit(toy)
         }
         catch (err) {
@@ -74,47 +76,43 @@ export function ToyEdit() {
         }
     }
 
-    function onHandleLabel({ target }) {
-        const label = target.id
-        // console.log('label:', label)
-        const idx = toyToEdit.labels.findIndex(curLabel => curLabel === label)
-        if (idx === -1) {
-            setToyToEdit((prevToy) => {
-                return { ...prevToy, labels: [...prevToy.labels, label] }
-            })
-        } else {
-            setToyToEdit((prevToy) => {
-                // * With filter
-                // const updatedLabels = toyToEdit.labels.filter(curLabel => curLabel !== label)
-                // return {
-                //     ...prevToy,
-                //     labels: updatedLabels
-                // }
-                // * With slice
-                return {
-                    ...prevToy,
-                    labels: [...prevToy.labels.slice(0, idx), ...prevToy.labels.slice(idx + 1)]
-                }
-            })
-        }
+
+    function onAddLabel(ev) {
+        ev.preventDefault()
+        setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels: [...prevToyToEdit.labels, labelToSave] }))
+        setLabelToSave('')
     }
 
-    const labelsAsStr = JSON.stringify(toyToEdit.labels)
+    function onRemoveLabel(ev, label) {
+        ev.preventDefault()
+        const idx = toyToEdit.labels.findIndex(curLabel => curLabel === label)
+
+        setToyToEdit(prevToyToEdit => ({
+            ...prevToyToEdit,
+            labels: [...prevToyToEdit.labels.slice(0, idx), ...prevToyToEdit.labels.slice(idx + 1)]
+        }))
+
+    }
+
+    function onHandleLabel({ target }) {
+        const label = target.value
+        setLabelToSave(label)
+    }
 
     return (
         <section className="toy-edit-container">
             <h2>{toyToEdit._id ? 'Edit this toy' : 'Add a new toy'}</h2>
 
             <form className="toy-edit-inputs" onSubmit={onSaveToy}>
-            <input type="file" accept="image/png/jpeg" onChange={onHandleImg} />
+                <input type="file" accept="image/png/jpeg" onChange={onHandleImg} />
 
-            {toyImage &&
-                <img
-                    alt="not found"
-                    height={"150px"}
-                    src={URL.createObjectURL(toyImage)}
-                />
-            }
+                {toyImage &&
+                    <img
+                        alt="not found"
+                        height={"150px"}
+                        src={URL.createObjectURL(toyImage)}
+                    />
+                }
 
                 <label htmlFor="title">Name:</label>
                 <input type="text" required
@@ -133,33 +131,40 @@ export function ToyEdit() {
                     onChange={handleChange}
                     value={toyToEdit.price}
                 />
-                <article>
+                <small>
                     <input type="checkbox" name="inStock" value={toyToEdit.inStock} checked={toyToEdit.inStock} onChange={handleChange} />
                     <label>Toy In Stock</label>
-                </article>
+                </small>
 
-                {/* <div className="label-container">
-                    {(labelsAsStr.length > 0) && <pre>{labelsAsStr}</pre>}
+                <div className="label-container">
                     <label>Labels:</label>
                     <ul>
-                        {labels.map(label => {
+                        {toyToEdit.labels.map(label => {
                             return <li
-                                onClick={onHandleLabel}
                                 id={label}
-                                key={label}
-                                className={`${labelsAsStr.includes(label) ? 'red' : 'black'}`} >
+                                key={label} >
                                 {label}
+                                <button onClick={(event) => onRemoveLabel(event, label)}>x</button>
                             </li>
                         })}
                     </ul>
-                </div> */}
+
+                    <input type="text"
+                        name="label"
+                        id="label"
+                        placeholder="Enter label"
+                        onChange={onHandleLabel}
+                        value={labelToSave}
+                    />
+                    <button onClick={onAddLabel}>Add label</button>
+                </div>
 
                 <div className="button-group">
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                     <Link to="/toy">Cancel</Link>
                 </div>
-
             </form>
+
         </section>
     )
 }
