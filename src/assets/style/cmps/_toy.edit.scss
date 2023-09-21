@@ -14,6 +14,7 @@
 
     .edit-basics {
         margin-top: 10px;
+
         &>* {
             margin-right: 10px;
         }
@@ -73,12 +74,13 @@
         }
     }
 
-    .add-label-container{
+    .add-label-container {
         margin-top: 10px;
     }
 
     .exit-buttons {
         margin-top: 30px;
+
         button {
             background-color: $clr6;
             font-size: 1.15em;
@@ -87,4 +89,49 @@
 
     }
 
+
+
+
+    @include for-mobile-layout {
+        // 0-640
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
+
+        .edit-basics,
+        .toy-availability {
+            font-size: 1em;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            gap: 10px;
+        }
+
+        .toy-availability {
+            flex-direction: row;
+        }
+
+        .labels-container {
+            ul {
+                flex-direction: column;
+                align-items: start;
+                gap: 0;
+                font-size: 1em;
+
+                li {
+                    padding-top: 0;
+                }
+            }
+        }
+
+        .exit-buttons {
+            margin-top: 20px;
+            button {
+                margin-right: 20px;
+            }
+        }
+    }
 }
