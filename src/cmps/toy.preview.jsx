@@ -15,9 +15,7 @@ export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
 
                 <p>Price: <span>{toy.price}$</span></p>
                 {!toy.inStock && <div className="toy-unavailable">
-
                     <span >Out of stock</span>
-
                 </div>
                 }
             </Link>
@@ -32,9 +30,9 @@ export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
             </section>}
 
             {(!user || !user.isAdmin) && (toy.inStock) &&
-                 <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)}>Add to cart </button>
+                <button className="add-to-cart-btn" onClick={() => onAddToCart(toy)}>Add to cart </button>
             }
-                {/* <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)} disabled = {!toy.inStock || !user  ? true : false}  >Add to cart </button> */}
+            {/* <button className="add-to-cart-btn" onClick={()=> onAddToCart(toy)} disabled = {!toy.inStock || !user  ? true : false}  >Add to cart </button> */}
         </article>
     )
 }

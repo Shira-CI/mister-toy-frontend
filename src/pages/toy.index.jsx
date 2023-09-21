@@ -53,7 +53,6 @@ export function ToyIndex() {
         console.log('added to cart')
         dispatch({ type: ADD_TOY_TO_CART, toy })
         dispatch({ type: SET_CART_IS_SHOWN, isCartShown: true })
-
     }
 
     // async function onAddToy() {

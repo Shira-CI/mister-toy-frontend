@@ -7,6 +7,8 @@ import { showErrorMsg } from "../services/event-bus.service.js"
 
 import { ReviewList } from '../cmps/review.list.jsx'
 
+import { ADD_TOY_TO_CART, SET_CART_IS_SHOWN } from '../store/cart.reducer'
+
 export function ToyDetails() {
     const [toy, setToy] = useState(toyService.getEmptyToy())
     const [loggedInUser, setLoggedInUser] = useState(null)
@@ -16,6 +18,8 @@ export function ToyDetails() {
 
     const { toyId } = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
         setLoggedInUser(user)
@@ -28,6 +32,11 @@ export function ToyDetails() {
     }, [toyId])
 
 
+    function onAddToCart(toy) {
+        console.log('added to cart')
+        dispatch({ type: ADD_TOY_TO_CART, toy })
+        dispatch({ type: SET_CART_IS_SHOWN, isCartShown: true })
+    }
 
 
     async function loadToy() {
@@ -79,24 +88,18 @@ export function ToyDetails() {
                 <section className='toy-price'>
                     <span>${toy.price} </span>
                     {user && !user.isAdmin && (
-                        <button>Add to cart </button>
+                        <button onClick={()=>onAddToCart(toy)}>Add to cart </button>
                     )
                     }
                 </section>
-
 
                 {toy.reviews.length > 0 && <ReviewList user={loggedInUser} reviews={toy.reviews} onRemoveReview={onRemoveReview} toyId={toyId} />}
 
                 {user && !user.isAdmin &&
                     <section className='customer-details-options'>
-
-                            <Link to={`/toy/${toy._id}/review`}>
                         <button className='add-review-btn'> Add review
-
-
+                            <Link to={`/toy/${toy._id}/review`}></Link>
                         </button>
-                            </Link>
-
                     </section>
                 }
 
