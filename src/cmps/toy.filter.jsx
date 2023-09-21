@@ -19,7 +19,7 @@ export function ToyFilter({ onSetFilter }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        console.log(target)
+        // console.log(target)
         const field = target.name
         const value = target.type === 'number' ? (+target.value || '') : target.value
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
@@ -63,14 +63,18 @@ export function ToyFilter({ onSetFilter }) {
             <label htmlFor="labels">Labels:</label>
             <select className="filter-by-label" onChange={handleChange} name="labels" id="labels"  >
                 <option value="">All</option>
-                <option value="On wheels">On wheels</option>
-                <option value="Art">Art</option>
-                <option value="Doll">Doll</option>
+                <option value="Animal Kingdom">Animal Kingdom</option>
                 <option value="Baby">Baby</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Cuddle Companions">Cuddle Companions</option>
+                <option value="Disney">Disney</option>
+                <option value="Doll">Doll</option>
+                <option value="Imaginative Play">Imaginative Play</option>
+                <option value="Mini Maestros">Mini Maestros</option>
+                <option value="Miniature Vehicles">Miniature Vehicles</option>
+                <option value="Minion Plush">Minion Plush</option>
                 <option value="Puzzle">Puzzle</option>
-                <option value="Outdoor">Outdoor</option>
-                <option value="Box game">Box game</option>
-                <option value="Battery Powered">Battery Powered</option>
+                <option value="Tiny Tots">Tiny Tots</option>
             </select>
 
         </form>
