@@ -36,7 +36,6 @@
 
       .user-menu {
         width: 50%;
-        background-color: #C4E9FA;
         background-color: #ff577ed5;
         display: inline-block;
         position: absolute;
@@ -60,7 +59,6 @@
       z-index: 2;
     }
   }
-
 
 
   @include for-mobile-layout {

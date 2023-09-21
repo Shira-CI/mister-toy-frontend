@@ -79,6 +79,7 @@ export function ToyEdit() {
 
     function onAddLabel(ev) {
         ev.preventDefault()
+        if (!labelToSave) return
         setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels: [...prevToyToEdit.labels, labelToSave] }))
         setLabelToSave('')
     }
@@ -91,7 +92,6 @@ export function ToyEdit() {
             ...prevToyToEdit,
             labels: [...prevToyToEdit.labels.slice(0, idx), ...prevToyToEdit.labels.slice(idx + 1)]
         }))
-
     }
 
     function onHandleLabel({ target }) {
@@ -104,62 +104,66 @@ export function ToyEdit() {
             <h2>{toyToEdit._id ? 'Edit this toy' : 'Add a new toy'}</h2>
 
             <form className="toy-edit-inputs" onSubmit={onSaveToy}>
-                <input type="file" accept="image/png/jpeg" onChange={onHandleImg} />
 
-                {toyImage &&
+                {/* <input type="file" accept="image/png/jpeg" onChange={onHandleImg} /> */}
+                {/* {toyImage &&
                     <img
                         alt="not found"
                         height={"150px"}
                         src={URL.createObjectURL(toyImage)}
                     />
-                }
+                } */}
 
-                <label htmlFor="title">Name:</label>
-                <input type="text" required
-                    name="title"
-                    id="title"
-                    placeholder="Enter name"
-                    onChange={handleChange}
-                    value={toyToEdit.title}
-                />
+                <section className='edit-basics'>
+                    <label htmlFor="title">Toy name:</label>
+                    <input type="text" required
+                        name="title"
+                        id="title"
+                        placeholder="Enter name"
+                        onChange={handleChange}
+                        value={toyToEdit.title}
+                    />
 
-                <label htmlFor="price">Price:</label>
-                <input type="number" required
-                    name="price"
-                    id="price"
-                    placeholder="Enter price"
-                    onChange={handleChange}
-                    value={toyToEdit.price}
-                />
-                <small>
+                    <label htmlFor="price">Price (USD):</label>
+                    <input type="number" required
+                        name="price"
+                        id="price"
+                        placeholder="Enter price"
+                        onChange={handleChange}
+                        value={toyToEdit.price}
+                    />
+                </section>
+                <small className='toy-availability'>
+                  <h3>Toy availability:</h3>
                     <input type="checkbox" name="inStock" value={toyToEdit.inStock} checked={toyToEdit.inStock} onChange={handleChange} />
-                    <label>Toy In Stock</label>
+                    <label className='toy-in-stock'>Toy In Stock</label>
                 </small>
 
-                <div className="label-container">
-                    <label>Labels:</label>
+                <div className="labels-container">
                     <ul>
+                        <h3>Labels:</h3>
                         {toyToEdit.labels.map(label => {
                             return <li
                                 id={label}
                                 key={label} >
                                 {label}
-                                <button onClick={(event) => onRemoveLabel(event, label)}>x</button>
+                                <button title='remove label' onClick={(event) => onRemoveLabel(event, label)}>x</button>
                             </li>
                         })}
                     </ul>
-
+                        <section className='add-label-container'>
                     <input type="text"
                         name="label"
                         id="label"
-                        placeholder="Enter label"
+                        placeholder="Enter new label"
                         onChange={onHandleLabel}
                         value={labelToSave}
                     />
-                    <button onClick={onAddLabel}>Add label</button>
+                    <button className='add-label-btn' onClick={onAddLabel}>Add label</button>
+                    </section>
                 </div>
 
-                <div className="button-group">
+                <div className="exit-buttons">
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                     <Link to="/toy">Cancel</Link>
                 </div>

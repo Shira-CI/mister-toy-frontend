@@ -1,3 +1,90 @@
-.toy-edit-inputs >*{
-margin: 10px;
+.toy-edit-container {
+    margin: 20px 0;
+
+    h2 {
+        margin-bottom: 25px;
+        font-size: 2em;
+    }
+
+    .edit-basics,
+    .toy-availability {
+        font-size: 1.1875em;
+        font-weight: bold;
+    }
+
+    .edit-basics {
+        margin-top: 10px;
+        &>* {
+            margin-right: 10px;
+        }
+    }
+
+    .toy-availability {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+
+        h3 {
+            font-size: 1em;
+        }
+
+        .toy-in-stock {
+            font-weight: normal;
+        }
+    }
+
+    .labels-container {
+        // margin: 10px 0;
+
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 8px;
+
+            h3 {
+                margin-right: 7px;
+                font-size: 1.1875em;
+            }
+
+            li {
+                display: flex;
+                align-items: center;
+                padding-top: 4px;
+
+                button {
+                    padding: 0.5em 0.7em;
+
+                    &:hover {
+                        background-color: rgb(242, 56, 56);
+                    }
+                }
+            }
+        }
+
+        .add-label-btn {
+            font-size: 0.9em;
+
+            &:hover {
+                background-color: rgb(220, 220, 220);
+                color: black;
+            }
+        }
+    }
+
+    .add-label-container{
+        margin-top: 10px;
+    }
+
+    .exit-buttons {
+        margin-top: 30px;
+        button {
+            background-color: $clr6;
+            font-size: 1.15em;
+            border-radius: 2em;
+        }
+
+    }
+
 }

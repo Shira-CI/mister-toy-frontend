@@ -79,12 +79,10 @@
     }
 
     @include for-mobile-layout {
-
         img {
             width: 90%;
             height: 70%;
         }
-
     }
 
     @include for-narrow-layout {
@@ -93,13 +91,5 @@
             height: 50%;
         }
     }
-
-    @include for-normal-layout {}
-
-    @include for-wide-layout {}
-
-    @include for-wide-layout {}
-
-
 }
 
