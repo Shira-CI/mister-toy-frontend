@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom"
+import { useEffect, useState } from 'react'
 
+import { ConfirmationModal } from './confirmation.modal'
 
 export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
     // console.log(user)
+    const [confirmationMsgIsShown, setConfirmationMsgIsShown] = useState(false)
+
+    function onConfirmRemoveToy() {
+        setConfirmationMsgIsShown(true)
+        // return <ConfirmationModal/>
+    }
+
+    function afterRemoveConfirmation(){
+        onRemoveToy(toy._id)
+    }
 
     return (
         <article className="toy-preview">
@@ -26,7 +38,9 @@ export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
                         Edit
                     </Link>
                 </button>
-                <button onClick={() => { onRemoveToy(toy._id) }}>Remove Toy</button>
+                {/* <button onClick={() => { onRemoveToy(toy._id) }}>Remove Toy</button> */}
+                <button onClick={()=>onConfirmRemoveToy()}>Remove Toy</button>
+                {confirmationMsgIsShown && <ConfirmationModal setConfirmationMsgIsShown={setConfirmationMsgIsShown} afterRemoveConfirmation={afterRemoveConfirmation}/>}
             </section>}
 
             {(!user || !user.isAdmin) && (toy.inStock) &&
