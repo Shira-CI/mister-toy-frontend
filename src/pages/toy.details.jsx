@@ -12,14 +12,14 @@ import { ADD_TOY_TO_CART, SET_CART_IS_SHOWN } from '../store/cart.reducer'
 export function ToyDetails() {
     const [toy, setToy] = useState(toyService.getEmptyToy())
     const [loggedInUser, setLoggedInUser] = useState(null)
-    const user = useSelector((storeState) => storeState.userModule.user)
-    // console.log(user , 'user from store')
-    // console.log(loggedInUser, 'user from details')
 
+    const user = useSelector((storeState) => storeState.userModule.user)
     const { toyId } = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    // console.log(user , 'user from store')
+    // console.log(loggedInUser, 'user from details')
 
     useEffect(() => {
         setLoggedInUser(user)
@@ -31,13 +31,11 @@ export function ToyDetails() {
         }
     }, [toyId])
 
-
     function onAddToCart(toy) {
-        console.log('added to cart')
+        // console.log('added to cart')
         dispatch({ type: ADD_TOY_TO_CART, toy })
         dispatch({ type: SET_CART_IS_SHOWN, isCartShown: true })
     }
-
 
     async function loadToy() {
         try {
@@ -52,7 +50,7 @@ export function ToyDetails() {
         }
     }
 
-    async function onRemoveReview(toyId, reviewId) {
+    async function onRemoveReview(reviewId) {
         try {
             const updatedToy = await toyService.removeReview(toyId, reviewId)
             setToy(updatedToy)
@@ -74,7 +72,6 @@ export function ToyDetails() {
 
                 <h2 className='toy-title'>{toy.title}</h2>
 
-
                 <p className='toy-description'>{toy.description}</p>
 
                 <section className='toy-labels'>
@@ -88,7 +85,7 @@ export function ToyDetails() {
                 <section className='toy-price'>
                     <span>${toy.price} </span>
                     {user && !user.isAdmin && (
-                        <button onClick={()=>onAddToCart(toy)}>Add to cart </button>
+                        <button onClick={() => onAddToCart(toy)}>Add to cart </button>
                     )
                     }
                 </section>
@@ -97,16 +94,21 @@ export function ToyDetails() {
 
                 {user && !user.isAdmin &&
                     <section className='customer-details-options'>
-                        <button className='add-review-btn'> Add review
-                            <Link to={`/toy/${toy._id}/review`}></Link>
-                        </button>
+                        <Link to={`/toy/${toy._id}/review`}>
+                            <button className='add-review-btn'> Add review
+
+
+                            </button>
+                        </Link>
                     </section>
                 }
 
                 {user && user.isAdmin &&
-                    <button> Edit
-                        <Link to={`/toy/edit/${toy._id}`}></Link>
-                    </button>
+                    <Link to={`/toy/edit/${toy._id}`}>
+
+                        <button> Edit
+                        </button>
+                    </Link>
                 }
 
                 <button className='back-btn-details' onClick={() => navigate('/toy')}> Back </button>

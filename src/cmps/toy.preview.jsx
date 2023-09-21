@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { ConfirmationModal } from './confirmation.modal'
 
@@ -9,7 +9,7 @@ export function ToyPreview({ toy, onRemoveToy, user, onAddToCart }) {
 
     function onConfirmRemoveToy() {
         setConfirmationMsgIsShown(true)
-        // return <ConfirmationModal/>
+        // console.log('remove toy from preview')
     }
 
     function afterRemoveConfirmation(){
