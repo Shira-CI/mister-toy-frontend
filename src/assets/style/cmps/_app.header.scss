@@ -27,6 +27,7 @@
 
     .logged-in-user {
       align-self: center;
+      position: relative;
 
       .user-greet {
         cursor: pointer;
@@ -34,13 +35,15 @@
       }
 
       .user-menu {
-        width: 100%;
+        width: 50%;
         background-color: #C4E9FA;
+        background-color: #ff577ed5;
         display: inline-block;
         position: absolute;
-        top: 100%;
+        bottom: -4.6875em;
         left: 0;
         border-radius: 2em;
+        // border-radius: 30%;
 
         .logout-btn {
           background-color: rgba(240, 255, 255, 0);
