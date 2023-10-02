@@ -57,6 +57,7 @@
       background-color: $clr6 ;
       border-radius: 50%;
       z-index: 2;
+      padding: 5px;
     }
   }
 
@@ -235,6 +236,8 @@
         padding-left: 0px;
         .demo-login-btn {
           font-size: 1em;
+          padding: 7px;
+
         }
       }
     }
