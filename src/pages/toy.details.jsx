@@ -64,7 +64,7 @@ export function ToyDetails() {
     const dynInventoryClass = toy.inStock ? '' : 'red'
 
     // if (!toy) return <span class="loader"></span>
-    if (!toy) return <span class="loader">lll</span>
+    if (!toy) return <span >loading</span>
 
     return (
         <section className="toy-details-container">

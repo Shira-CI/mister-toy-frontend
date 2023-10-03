@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import { Link } from 'react-router-dom'
-
 import { toyService } from "../services/toy.service"
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { loadToys, removeToy, saveToy } from "../store/toy.action"
@@ -67,6 +65,8 @@ export function ToyIndex() {
     // }
 
 
+    //  if(!toys) return <span className="loader"></span>
+     if(!toys) return <span >loading</span>
 
     return (
         <section className='index-container'>
@@ -82,7 +82,8 @@ export function ToyIndex() {
 
             </section>
 
-            {isLoading && <span class="loader"></span>}
+            {/* {isLoading && <span className="loader"></span>} */}
+            {/* {isLoading && <span >loading</span>} */}
 
             <ToyList
                 toys={toys}

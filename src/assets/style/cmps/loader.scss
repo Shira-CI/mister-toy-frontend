@@ -13,6 +13,7 @@
       radial-gradient(circle 5px , #FF3D00 100%, transparent 0);
       background-repeat: no-repeat;
     animation: move 4s linear infinite , rotate 2s linear infinite;
+    z-index: 10;
   }
   
   @keyframes rotate {
