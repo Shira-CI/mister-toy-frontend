@@ -17,8 +17,6 @@ export function ToyIndex() {
     const user = useSelector((storeState) => storeState.userModule.user)
     const toys = useSelector((storeState) => storeState.toyModule.toys)
     const isLoading = useSelector((storeState) => storeState.toyModule.isLoading)
-    const cart = useSelector((storeState) => storeState.cartModule.shoppingCart)
-
 
     const dispatch = useDispatch()
     // console.log(toys)
@@ -64,10 +62,6 @@ export function ToyIndex() {
     //     }
     // }
 
-
-    //  if(!toys) return <span className="loader"></span>
-     if(!toys) return <span >loading</span>
-
     return (
         <section className='index-container'>
 
@@ -82,9 +76,8 @@ export function ToyIndex() {
 
             </section>
 
-            {/* {isLoading && <span className="loader"></span>} */}
-            {/* {isLoading && <span >loading</span>} */}
-
+            {isLoading && <div className="loader"></div>}
+            
             <ToyList
                 toys={toys}
                 user={loggedInUser}

@@ -2,18 +2,22 @@
     width: 54px;
     height: 54px;
     position: relative;
+    position: absolute;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: #d2f1ff;
     background-image:
-      radial-gradient(circle 5px , #FF3D00 100%, transparent 0),
-      radial-gradient(circle 5px , #FF3D00 100%, transparent 0),
-      radial-gradient(circle 5px , #FF3D00 100%, transparent 0),
-      radial-gradient(circle 5px , #FF3D00 100%, transparent 0),
-      radial-gradient(circle 5px , #FF3D00 100%, transparent 0),
-      radial-gradient(circle 5px , #FF3D00 100%, transparent 0);
+      radial-gradient(circle 5px , $clr6 100%, transparent 0),
+      radial-gradient(circle 5px , $clr6 100%, transparent 0),
+      radial-gradient(circle 5px , $clr6 100%, transparent 0),
+      radial-gradient(circle 5px , $clr6 100%, transparent 0),
+      radial-gradient(circle 5px , $clr6 100%, transparent 0),
+      radial-gradient(circle 5px , $clr6 100%, transparent 0);
       background-repeat: no-repeat;
     animation: move 4s linear infinite , rotate 2s linear infinite;
     z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   @keyframes rotate {
