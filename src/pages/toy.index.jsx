@@ -82,7 +82,7 @@ export function ToyIndex() {
 
             </section>
 
-            {isLoading && <h4>Loading...</h4>}
+            {isLoading && <span class="loader"></span>}
 
             <ToyList
                 toys={toys}
